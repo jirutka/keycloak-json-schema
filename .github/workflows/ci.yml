@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Checkout dahag-ag/keycloak-openapi
+        uses: actions/checkout@v3
+        with:
+          repository: dahag-ag/keycloak-openapi
+          path: keycloak-openapi
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Convert OpenAPI definitions to JSON schemas
+        run: |
+          mkdir -p public
+          rm keycloak-openapi/OpenApiDefinitions/keycloak-16*.json
+          for file in keycloak-openapi/OpenApiDefinitions/*.json; do
+            ./bin/convert $file > public/${file##*/}
+          done
+
+      - name: Validate JSON schemas
+        run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'public/*.json'
+
+      - name: Generate directory listings
+        uses: jayanta525/github-pages-directory-listing@20409ce0808d816bcbc3090ed7a6a784cf6ed9df
+        with:
+          FOLDER: public
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./public
+
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs: build
+    permissions:
+      pages: write  # to deploy to Pages
+      id-token: write  # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

@@ -1,0 +1,154 @@
+#!/usr/bin/env node
+// vim: set ts=2 sw=2 expandtab:
+
+const FS = require('node:fs')
+const { openapiSchemaToJsonSchema: toJsonSchema } = require('@openapi-contrib/openapi-schema-to-json-schema')
+
+const topLevelType = 'RealmRepresentation'
+
+// https://github.com/dahag-ag/keycloak-openapi/issues/7
+const fixes = {
+  AuthenticationExecutionExportRepresentation: ({ properties: props }, schemas) => {
+    Object.assign(props, schemas.AbstractAuthenticationExecutionRepresentation.properties)
+  },
+  ClientPoliciesRepresentation: ({ properties: props }) => {
+    props.policies.items = {
+      '$ref': '#/$defs/ClientPolicyRepresentation',
+    }
+  },
+  ComponentExportRepresentation: ({ properties: { config, subComponents } }) => {
+    config.additionalProperties = {
+      type: 'array',
+      items: { type: 'string' },
+    }
+    const ref = subComponents.additionalProperties['$ref']
+    if (ref) {
+      subComponents.additionalProperties = {
+        type: 'array',
+        items: { '$ref': ref },
+      }
+    }
+  },
+  PolicyRepresentation: ({ properties: props }, schemas) => {
+    Object.assign(props, schemas.AbstractPolicyRepresentation.properties)
+  },
+  RealmRepresentation: ({ properties: props }) => {
+    for (const [oldProp, newProp] of [
+      ['oAuth2DeviceCodeLifespan', 'oauth2DeviceCodeLifespan'],
+      ['oAuth2DevicePollingInterval', 'oauth2DevicePollingInterval'],
+    ]) {
+      props[newProp] ||= props[oldProp]
+      delete props[oldProp]
+    }
+    props.clientPolicies ||= {
+      '$ref': '#/$defs/ClientPoliciesRepresentation',
+    }
+    props.clientProfiles ||= {
+      '$ref': '#/$defs/ClientProfilesRepresentation',
+    }
+    {
+      const ref = props.components.additionalProperties['$ref']
+      if (ref) {
+        props.components.additionalProperties = {
+          type: 'array',
+          items: { '$ref': ref },
+        }
+      }
+    }
+  },
+}
+
+// This schema is missing in keycloak-openapi schemas.
+// https://github.com/dahag-ag/keycloak-openapi/issues/7
+const ClientPolicyRepresentation = {
+  type: 'object',
+  additionalProperties: false,
+  properties: {
+    name: { type: 'string' },
+    description: { type: 'string' },
+    enabled: { type: 'boolean' },
+    conditions: {
+      type: 'array',
+      items: {
+        '$ref': '#/$defs/ClientPolicyConditionRepresentation',
+      },
+    },
+    profiles: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+    },
+  },
+}
+
+// https://github.com/dahag-ag/keycloak-openapi/issues/4 (it's not fixed in older specs)
+function fixEnum (enumValue) {
+  if (Array.isArray(enumValue) && !enumValue.some(item => typeof item !== 'string')) {
+    return enumValue.map(item => item.replace(/\(\d\)$/, ''))
+  }
+  return enumValue
+}
+
+function traverse (obj, visitor) {
+  if (typeof obj === 'object' && obj != null) {
+    for (const val of Object.values(obj)) {
+      visitor(val)
+      traverse(val, visitor)
+    }
+  }
+  return obj
+}
+
+function main (argv) {
+  const inputFile = FS.readFileSync(argv[0], 'utf8')
+
+  const oApiSchema = JSON.parse(inputFile)
+
+  let schemaUri
+  const defs = Object.entries(oApiSchema.components.schemas).reduce((acc, [id, schema]) => {
+    const jsonSchema = toJsonSchema(schema)
+
+    // It's the same for all, so just save the last one.
+    schemaUri = jsonSchema['$schema']
+    delete jsonSchema['$schema']
+
+    acc[id] = jsonSchema
+    return acc
+  }, {})
+
+  traverse(defs, obj => {
+    if (typeof obj !== 'object' || obj == null) {
+      return
+    }
+    if ('$ref' in obj) {
+      obj['$ref'] = obj['$ref'].replace('#/components/schemas/', '#/$defs/')
+    }
+    if (obj.type === 'object' && 'properties' in obj) {
+      obj.additionalProperties ??= false
+    }
+    if (obj.type === 'string' && Array.isArray(obj['enum'])) {
+      obj['enum'] = obj['enum'].map(item => item.replace(/\(\d\)$/, ''))
+    }
+  })
+
+  defs.ClientPolicyRepresentation ??= ClientPolicyRepresentation
+
+  for (const [id, transform] of Object.entries(fixes)) {
+    transform(defs[id], defs)
+  }
+
+  delete defs.AbstractAuthenticationExecutionRepresentation
+  delete defs.AbstractPolicyRepresentation
+
+  const bundle = {
+    '$schema': schemaUri,
+    ...defs[topLevelType],
+    '$defs': defs,
+  }
+  delete bundle['$defs'][topLevelType]
+
+  console.log(JSON.stringify(bundle, null, 2))
+}
+
+main(process.argv.slice(2))

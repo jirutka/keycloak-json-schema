@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^10.1.0",
+    "@openapi-contrib/openapi-schema-to-json-schema": "^4.0.5",
+    "ajv-cli": "^5.0.0"
+  }
+}
