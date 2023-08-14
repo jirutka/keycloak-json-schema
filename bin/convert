@@ -117,12 +117,21 @@ function main (argv) {
     return acc
   }, {})
 
+  defs.ClientPolicyRepresentation ??= ClientPolicyRepresentation
+
+  for (const [id, transform] of Object.entries(fixes)) {
+    transform(defs[id], defs)
+  }
+
+  const refIds = []
   traverse(defs, obj => {
     if (typeof obj !== 'object' || obj == null) {
       return
     }
     if ('$ref' in obj) {
-      obj['$ref'] = obj['$ref'].replace('#/components/schemas/', '#/$defs/')
+      const ref = obj['$ref'].replace('#/components/schemas/', '#/$defs/')
+      refIds.push(ref.replace(/^#\/.*\//, ''))
+      obj['$ref'] = ref
     }
     if (obj.type === 'object' && 'properties' in obj) {
       obj.additionalProperties ??= false
@@ -132,14 +141,14 @@ function main (argv) {
     }
   })
 
-  defs.ClientPolicyRepresentation ??= ClientPolicyRepresentation
-
-  for (const [id, transform] of Object.entries(fixes)) {
-    transform(defs[id], defs)
-  }
-
   delete defs.AbstractAuthenticationExecutionRepresentation
   delete defs.AbstractPolicyRepresentation
+
+  const missing = refIds.filter(id => !defs[id])
+  if (missing.length > 0) {
+    console.warn(`Missing references: ${missing.join(', ')}`)
+    process.exit(1)
+  }
 
   const bundle = {
     '$schema': schemaUri,
