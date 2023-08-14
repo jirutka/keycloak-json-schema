@@ -29,6 +29,18 @@ const fixes = {
       }
     }
   },
+  ComponentRepresentation: ({ properties: { config } }) => {
+    config.additionalProperties = {
+      type: 'array',
+      items: { type: 'string' },
+    }
+  },
+  CredentialRepresentation: ({ properties: { config } }) => {
+    config.additionalProperties = {
+      type: 'array',
+      items: { type: 'string' },
+    }
+  },
   PolicyRepresentation: ({ properties: props }, schemas) => {
     Object.assign(props, schemas.AbstractPolicyRepresentation.properties)
   },
