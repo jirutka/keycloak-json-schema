@@ -24,7 +24,7 @@ jobs:
           mkdir -p public
           rm keycloak-openapi/OpenApiDefinitions/keycloak-16*.json
           for file in keycloak-openapi/OpenApiDefinitions/*.json; do
-            ./bin/convert $file > public/${file##*/}
+            ./bin/convert $file patches/*.yml > public/${file##*/}
           done
 
       - name: Validate JSON schemas

@@ -2,96 +2,26 @@
 // vim: set ts=2 sw=2 expandtab:
 
 const FS = require('node:fs')
+
 const { openapiSchemaToJsonSchema: toJsonSchema } = require('@openapi-contrib/openapi-schema-to-json-schema')
+const JsonMergePatch = require('json-merge-patch')
+const YAML = require('yaml')
+
 
 const topLevelType = 'RealmRepresentation'
 
-// https://github.com/dahag-ag/keycloak-openapi/issues/7
-const fixes = {
-  AuthenticationExecutionExportRepresentation: ({ properties: props }, schemas) => {
-    Object.assign(props, schemas.AbstractAuthenticationExecutionRepresentation.properties)
-  },
-  ClientPoliciesRepresentation: ({ properties: props }) => {
-    props.policies.items = {
-      '$ref': '#/$defs/ClientPolicyRepresentation',
+function parseFile (filepath) {
+  const contents = FS.readFileSync(filepath, 'utf-8')
+  try {
+    if (filepath.endsWith('.yml') || filepath.endsWith('.yaml')) {
+      return YAML.parse(contents)
+    } else {
+      return JSON.parse(contents)
     }
-  },
-  ComponentExportRepresentation: ({ properties: { config, subComponents } }) => {
-    config.additionalProperties = {
-      type: 'array',
-      items: { type: 'string' },
-    }
-    const ref = subComponents.additionalProperties['$ref']
-    if (ref) {
-      subComponents.additionalProperties = {
-        type: 'array',
-        items: { '$ref': ref },
-      }
-    }
-  },
-  ComponentRepresentation: ({ properties: { config } }) => {
-    config.additionalProperties = {
-      type: 'array',
-      items: { type: 'string' },
-    }
-  },
-  CredentialRepresentation: ({ properties: { config } }) => {
-    config.additionalProperties = {
-      type: 'array',
-      items: { type: 'string' },
-    }
-  },
-  PolicyRepresentation: ({ properties: props }, schemas) => {
-    Object.assign(props, schemas.AbstractPolicyRepresentation.properties)
-  },
-  RealmRepresentation: ({ properties: props }) => {
-    for (const [oldProp, newProp] of [
-      ['oAuth2DeviceCodeLifespan', 'oauth2DeviceCodeLifespan'],
-      ['oAuth2DevicePollingInterval', 'oauth2DevicePollingInterval'],
-    ]) {
-      props[newProp] ||= props[oldProp]
-      delete props[oldProp]
-    }
-    props.clientPolicies ||= {
-      '$ref': '#/$defs/ClientPoliciesRepresentation',
-    }
-    props.clientProfiles ||= {
-      '$ref': '#/$defs/ClientProfilesRepresentation',
-    }
-    {
-      const ref = props.components.additionalProperties['$ref']
-      if (ref) {
-        props.components.additionalProperties = {
-          type: 'array',
-          items: { '$ref': ref },
-        }
-      }
-    }
-  },
-}
-
-// This schema is missing in keycloak-openapi schemas.
-// https://github.com/dahag-ag/keycloak-openapi/issues/7
-const ClientPolicyRepresentation = {
-  type: 'object',
-  additionalProperties: false,
-  properties: {
-    name: { type: 'string' },
-    description: { type: 'string' },
-    enabled: { type: 'boolean' },
-    conditions: {
-      type: 'array',
-      items: {
-        '$ref': '#/$defs/ClientPolicyConditionRepresentation',
-      },
-    },
-    profiles: {
-      type: 'array',
-      items: {
-        type: 'string',
-      },
-    },
-  },
+  } catch (err) {
+    err.message = `${filepath}: ${err.message}`
+    throw err
+  }
 }
 
 function traverse (obj, visitor) {
@@ -105,12 +35,15 @@ function traverse (obj, visitor) {
 }
 
 function main (argv) {
-  const inputFile = FS.readFileSync(argv[0], 'utf8')
+  if (argv.length < 1 || ['-h', '--help'].includes(argv[0])) {
+    console.warn('Usage: convert <openapi> <merge-patch>...')
+    process.exit(1)
+  }
 
-  const oApiSchema = JSON.parse(inputFile)
+  const oApiSchema = parseFile(argv[0])
 
   let schemaUri
-  const defs = Object.entries(oApiSchema.components.schemas).reduce((acc, [id, schema]) => {
+  let defs = Object.entries(oApiSchema.components.schemas).reduce((acc, [id, schema]) => {
     const jsonSchema = toJsonSchema(schema)
 
     // It's the same for all, so just save the last one.
@@ -121,10 +54,20 @@ function main (argv) {
     return acc
   }, {})
 
-  defs.ClientPolicyRepresentation ??= ClientPolicyRepresentation
+  // Fix unhandled inheritance.
+  // https://github.com/dahag-ag/keycloak-openapi/issues/7
+  Object.assign(
+    defs.AuthenticationExecutionExportRepresentation.properties,
+    defs.AbstractAuthenticationExecutionRepresentation.properties,
+  )
+  Object.assign(
+    defs.PolicyRepresentation.properties,
+    defs.AbstractPolicyRepresentation.properties,
+  )
 
-  for (const [id, transform] of Object.entries(fixes)) {
-    transform(defs[id], defs)
+  for (const patchFile of argv.slice(1)) {
+    const patch = parseFile(patchFile)
+    defs = JsonMergePatch.apply(defs, patch)
   }
 
   const refIds = []
@@ -145,9 +88,6 @@ function main (argv) {
       obj['enum'] = obj['enum'].map(item => item.replace(/\(\d\)$/, ''))
     }
   })
-
-  delete defs.AbstractAuthenticationExecutionRepresentation
-  delete defs.AbstractPolicyRepresentation
 
   const missing = refIds.filter(id => !defs[id])
   if (missing.length > 0) {
