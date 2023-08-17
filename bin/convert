@@ -94,14 +94,6 @@ const ClientPolicyRepresentation = {
   },
 }
 
-// https://github.com/dahag-ag/keycloak-openapi/issues/4 (it's not fixed in older specs)
-function fixEnum (enumValue) {
-  if (Array.isArray(enumValue) && !enumValue.some(item => typeof item !== 'string')) {
-    return enumValue.map(item => item.replace(/\(\d\)$/, ''))
-  }
-  return enumValue
-}
-
 function traverse (obj, visitor) {
   if (typeof obj === 'object' && obj != null) {
     for (const val of Object.values(obj)) {
@@ -149,6 +141,7 @@ function main (argv) {
       obj.additionalProperties ??= false
     }
     if (obj.type === 'string' && Array.isArray(obj['enum'])) {
+      // https://github.com/dahag-ag/keycloak-openapi/issues/4 (it's not fixed in older specs)
       obj['enum'] = obj['enum'].map(item => item.replace(/\(\d\)$/, ''))
     }
   })
