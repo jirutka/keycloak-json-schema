@@ -1,0 +1,197 @@
+# JSON Merge Patch to refine types of some properties.
+
+AuthenticationExecutionExportRepresentation:
+  properties:
+    requirement:
+      type: string
+      enum:
+        - ALTERNATIVE
+        - CONDITIONAL
+        - DISABLED
+        - REQUIRED
+
+ProtocolMapperRepresentation:
+  properties:
+    protocol:
+      type: string
+      enum:
+        - openid-connect
+        - saml
+
+ClientRepresentation:
+  properties:
+    clientAuthenticatorType:
+      type: string
+      enum:
+        - client-jwt
+        - client-secret
+        - client-secret-jwt
+        - client-x509
+    rootUrl:
+      oneOf:
+        - type: string
+          format: uri
+        - type: string
+          enum:
+            - ""
+
+ClientScopeRepresentation:
+  properties:
+    protocol:
+      type: string
+      enum:
+        - openid-connect
+        - saml
+
+RealmRepresentation:
+  properties:
+    attributes:
+      properties:
+        cibaAuthRequestedUserHint:
+          type: string
+          enum:
+            - login_hint
+        cibaBackchannelTokenDeliveryMode:
+          type: string
+          enum:
+            - ping
+            - poll
+        cibaExpiresIn:
+          format: string
+          pattern: "^[0-9]*$"
+        cibaInterval:
+          format: string
+          pattern: "^[0-9]*$"
+        frontendUrl:
+          oneOf:
+            - type: string
+              format: uri
+            - type: string
+              enum:
+                - ""
+    browserSecurityHeaders:
+      type: object
+      additionalProperties: false
+      properties:
+        contentSecurityPolicy:
+          type: string
+        contentSecurityPolicyReportOnly:
+          type: string
+        strictTransportSecurity:
+          type: string
+        xContentTypeOptions:
+          type: string
+        xFrameOptions:
+          type: string
+        xRobotsTag:
+          type: string
+        xXSSProtection:
+          type: string
+    otpPolicyType:
+      type: string
+      enum:
+        - totp
+        - hotp
+    smtpServer:
+      type: object
+      additionalProperties: false
+      properties:
+        auth:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - ""
+        envelopeFrom:
+          type: string
+        from:
+          oneOf:
+            - type: string
+              format: email
+            - type: string
+              enum:
+                - ""
+        fromDisplayName:
+          type: string
+        host:
+          type: string
+        password:
+          type: string
+        port:
+          type: string
+        replyTo:
+          type: string
+        replyToDisplayName:
+          type: string
+        ssl:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - ""
+        starttls:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - ""
+        user:
+          type: string
+    sslRequired:
+      type: string
+      enum:
+        - all
+        - external
+        - none
+    webAuthnPolicyAttestationConveyancePreference:
+      type: string
+      enum:
+        - not specified
+        - none
+        - indirect
+        - direct
+    webAuthnPolicyAuthenticatorAttachment:
+      type: string
+      enum:
+        - not specified
+        - platform
+        - cross platform
+    webAuthnPolicyRequireResidentKey:
+      type: string
+      enum:
+        - not specified
+        - "yes"
+        - "no"
+    webAuthnPolicyUserVerificationRequirement:
+      type: string
+      enum:
+        - not specified
+        - required
+        - preferred
+        - discouraged
+    webAuthnPolicyPasswordlessAttestationConveyancePreference:
+      type: string
+      enum:
+        - not specified
+        - none
+        - indirect
+        - direct
+    webAuthnPolicyPasswordlessAuthenticatorAttachment:
+      type: string
+      enum:
+        - not specified
+        - platform
+        - cross platform
+    webAuthnPolicyPasswordlessRequireResidentKey:
+      type: string
+      enum:
+        - not specified
+        - "yes"
+        - "no"
+    webAuthnPolicyPasswordlessUserVerificationRequirement:
+      type: string
+      enum:
+        - not specified
+        - required
+        - preferred
+        - discouraged

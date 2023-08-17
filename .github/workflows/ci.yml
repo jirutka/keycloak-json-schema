@@ -26,6 +26,9 @@ jobs:
           for file in keycloak-openapi/OpenApiDefinitions/*.json; do
             ./bin/convert $file patches/*.yml > public/${file##*/}
           done
+          for file in keycloak-openapi/OpenApiDefinitions/keycloak-2[1-9]*.json; do
+            ./bin/convert $file patches/*.yml patches/v21+/*.yml > public/${file##*/}
+          done
 
       - name: Validate JSON schemas
         run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'public/*.json'
