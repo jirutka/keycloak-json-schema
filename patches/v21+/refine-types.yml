@@ -44,15 +44,12 @@ ClientRepresentation:
           type: string
         ## Advanced
         # Fine grain OpenID Connect configuration
-        logoUri: &string-uri-ref
-          oneOf:
-            - type: string
-              format: uri-reference
-            - type: string
-              enum:
-                - ""
-        policyUri: *string-uri-ref
-        tosUri: *string-uri-ref
+        logoUri:
+          type: string
+        policyUri:
+          type: string
+        tosUri:
+          type: string
         access.token.signed.response.alg:
           type: string
         id.token.signed.response.alg:
@@ -106,12 +103,7 @@ ClientRepresentation:
         - client-secret-jwt
         - client-x509
     rootUrl:
-      oneOf:
-        - type: string
-          format: uri
-        - type: string
-          enum:
-            - ""
+      type: string
 
 ClientScopeRepresentation:
   properties:
@@ -138,12 +130,7 @@ RealmRepresentation:
         cibaExpiresIn: *string-uint
         cibaInterval: *string-uint
         frontendUrl:
-          oneOf:
-            - type: string
-              format: uri
-            - type: string
-              enum:
-                - ""
+          type: string
     browserSecurityHeaders:
       type: object
       additionalProperties: false
@@ -175,12 +162,7 @@ RealmRepresentation:
         envelopeFrom:
           type: string
         from:
-          oneOf:
-            - type: string
-              format: email
-            - type: string
-              enum:
-                - ""
+          type: string
         fromDisplayName:
           type: string
         host:
