@@ -3,6 +3,8 @@
 
 const FS = require('node:fs')
 
+const { default: RefParser } = require('@apidevtools/json-schema-ref-parser')
+const { default: $Ref } = require('@apidevtools/json-schema-ref-parser/dist/lib/ref')
 const { openapiSchemaToJsonSchema: toJsonSchema } = require('@openapi-contrib/openapi-schema-to-json-schema')
 const JsonMergePatch = require('json-merge-patch')
 const YAML = require('yaml')
@@ -10,17 +12,55 @@ const YAML = require('yaml')
 
 const topLevelType = 'RealmRepresentation'
 
-function parseFile (filepath) {
+// HACK: Monkey-patch json-schema-ref-parser to dereference only external $ref.
+{
+  const _isAllowed$Ref = $Ref.isAllowed$Ref.bind($Ref)
+  $Ref.isAllowed$Ref = (value, options) => {
+    return _isAllowed$Ref(value, options) && value.$ref.startsWith('https://')
+  }
+}
+
+/** @type {(filepath: string, reviver?: (key: unknown, value: unknown) => unknown) => any} */
+function parseFile (filepath, reviver) {
   const contents = FS.readFileSync(filepath, 'utf-8')
   try {
     if (filepath.endsWith('.yml') || filepath.endsWith('.yaml')) {
-      return YAML.parse(contents)
+      return YAML.parse(contents, { reviver })
     } else {
-      return JSON.parse(contents)
+      return JSON.parse(contents, reviver)
     }
   } catch (err) {
     err.message = `${filepath}: ${err.message}`
     throw err
+  }
+}
+
+/** @type {<T>(target: T, patchFile: string) => Promise<T>} */
+async function applyMergePatch (target, patchFile) {
+  let patch = parseFile(patchFile, baseUriRefReviver())
+  // Dereference external $ref(s).
+  patch = await RefParser.dereference(patch)
+  return JsonMergePatch.apply(target, patch)
+}
+
+/** @type {() => (key: unknown, value: unknown) => unknown} */
+function baseUriRefReviver () {
+  let baseUri
+
+  return (key, value) => {
+    if (key === '$baseUri' && typeof value === 'string') {
+      baseUri = value
+      return undefined
+
+    } else if (key === '$ref' && typeof value === 'string') {
+      if (!baseUri && value.includes('${baseUri}')) {
+        throw new Error('$baseUri is not defined')
+      }
+      return value.replace('${baseUri}', baseUri)
+
+    } else {
+      return value
+    }
   }
 }
 
@@ -34,7 +74,7 @@ function traverse (obj, visitor) {
   return obj
 }
 
-function main (argv) {
+async function main (argv) {
   if (argv.length < 1 || ['-h', '--help'].includes(argv[0])) {
     console.warn('Usage: convert <openapi> <merge-patch>...')
     process.exit(1)
@@ -66,8 +106,7 @@ function main (argv) {
   )
 
   for (const patchFile of argv.slice(1)) {
-    const patch = parseFile(patchFile)
-    defs = JsonMergePatch.apply(defs, patch)
+    defs = await applyMergePatch(defs, patchFile)
   }
 
   const refIds = []
@@ -105,4 +144,6 @@ function main (argv) {
   console.log(JSON.stringify(bundle, null, 2))
 }
 
-main(process.argv.slice(2))
+main(process.argv.slice(2)).catch(err => {
+  throw err
+})
