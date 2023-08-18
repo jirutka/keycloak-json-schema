@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-check
 // vim: set ts=2 sw=2 expandtab:
 
 const FS = require('node:fs')
@@ -64,6 +65,7 @@ function baseUriRefReviver () {
   }
 }
 
+/** @type {<T>(obj: T, visitor: (value: any) => void) => T} */
 function traverse (obj, visitor) {
   if (typeof obj === 'object' && obj != null) {
     for (const val of Object.values(obj)) {
@@ -74,6 +76,7 @@ function traverse (obj, visitor) {
   return obj
 }
 
+/** @type {(argv: string[]) => Promise<void>} */
 async function main (argv) {
   if (argv.length < 1 || ['-h', '--help'].includes(argv[0])) {
     console.warn('Usage: convert <openapi> <merge-patch>...')
@@ -83,6 +86,7 @@ async function main (argv) {
   const oApiSchema = parseFile(argv[0])
 
   let schemaUri
+  /** @type {Record<string, any>} */
   let defs = Object.entries(oApiSchema.components.schemas).reduce((acc, [id, schema]) => {
     const jsonSchema = toJsonSchema(schema)
 
