@@ -2,7 +2,7 @@
 // @ts-check
 // vim: set ts=2 sw=2 expandtab:
 
-const FS = require('node:fs')
+const FS = require('node:fs/promises')
 
 const { default: RefParser } = require('@apidevtools/json-schema-ref-parser')
 const { default: $Ref } = require('@apidevtools/json-schema-ref-parser/dist/lib/ref')
@@ -21,9 +21,9 @@ const topLevelType = 'RealmRepresentation'
   }
 }
 
-/** @type {(filepath: string, reviver?: (key: unknown, value: unknown) => unknown) => any} */
-function parseFile (filepath, reviver) {
-  const contents = FS.readFileSync(filepath, 'utf-8')
+/** @type {(filepath: string, reviver?: (key: unknown, value: unknown) => unknown) => Promise<any>} */
+async function parseFile (filepath, reviver) {
+  const contents = await FS.readFile(filepath, 'utf-8')
   try {
     if (filepath.endsWith('.yml') || filepath.endsWith('.yaml')) {
       return YAML.parse(contents, { reviver })
@@ -38,7 +38,7 @@ function parseFile (filepath, reviver) {
 
 /** @type {<T>(target: T, patchFile: string) => Promise<T>} */
 async function applyMergePatch (target, patchFile) {
-  let patch = parseFile(patchFile, baseUriRefReviver())
+  let patch = await parseFile(patchFile, baseUriRefReviver())
   // Dereference external $ref(s).
   patch = await RefParser.dereference(patch)
   return JsonMergePatch.apply(target, patch)
@@ -83,7 +83,7 @@ async function main (argv) {
     process.exit(1)
   }
 
-  const oApiSchema = parseFile(argv[0])
+  const oApiSchema = await parseFile(argv[0])
 
   let schemaUri
   /** @type {Record<string, any>} */
