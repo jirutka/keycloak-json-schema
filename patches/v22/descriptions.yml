@@ -1,0 +1,822 @@
+# JSON Merge Patch with schema title and description parameters as references
+# to the Keycloak Admin UI message bundles.
+
+$baseUri: https://raw.githubusercontent.com/keycloak/keycloak/22.0.1/js/apps/admin-ui/public/locales/en
+
+ClientRepresentation:
+  properties:
+    name:
+      title:
+        $ref: ${baseUri}/common.json#/clientName
+      description:
+        $ref: ${baseUri}/clients-help.json#/clientName
+    description:
+      title:
+        $ref: ${baseUri}/common.json#/description
+      description:
+        $ref: ${baseUri}/clients-help.json#/description
+    clientId:
+      title:
+        $ref: ${baseUri}/common.json#/clientId
+      description:
+        $ref: ${baseUri}/clients-help.json#/clientId
+    enabled:
+      title:
+        $ref: ${baseUri}/common.json#/enabled
+      description:
+        $ref: ${baseUri}/clients-help.json#/enableDisable
+    alwaysDisplayInConsole:
+      title:
+        $ref: ${baseUri}/clients.json#/alwaysDisplayInUI
+      description:
+        $ref: ${baseUri}/clients-help.json#/alwaysDisplayInUI
+    rootUrl:
+      title:
+        $ref: ${baseUri}/clients.json#/rootUrl
+      description:
+        $ref: ${baseUri}/clients-help.json#/rootURL
+    adminUrl:
+      title:
+        $ref: ${baseUri}/clients.json#/adminURL
+      description:
+        $ref: ${baseUri}/clients-help.json#/adminURL
+    baseUrl:
+      title:
+        $ref: ${baseUri}/clients.json#/homeURL
+      description:
+        $ref: ${baseUri}/clients-help.json#/homeURL
+    clientAuthenticatorType:
+      title:
+        $ref: ${baseUri}/clients.json#/clientAuthenticator
+      description:
+        $ref: ${baseUri}/clients-help.json#/client-authenticator-type
+    secret:
+      title:
+        $ref: ${baseUri}/clients.json#/clientSecret
+    registrationAccessToken:
+      title:
+        $ref: ${baseUri}/clients.json#/registrationAccessToken
+      description:
+        $ref: ${baseUri}/clients-help.json#/registration-access-token
+    redirectUris:
+      title:
+        $ref: ${baseUri}/clients.json#/validRedirectUri
+      description:
+        $ref: ${baseUri}/clients-help.json#/validRedirectURIs
+    webOrigins:
+      title:
+        $ref: ${baseUri}/clients.json#/webOrigins
+      description:
+        $ref: ${baseUri}/clients-help.json#/webOrigins
+    notBefore:
+      title:
+        $ref: ${baseUri}/clients.json#/notBefore
+      description:
+        $ref: ${baseUri}/clients-help.json#/notBefore
+    bearerOnly:
+      description:
+        $ref: ${baseUri}/clients.json#/explainBearerOnly
+    consentRequired:
+      title:
+        $ref: ${baseUri}/clients.json#/consentRequired
+      description:
+        $ref: ${baseUri}/clients-help.json#/consentRequired
+    standardFlowEnabled:
+      title:
+        $ref: ${baseUri}/clients.json#/standardFlow
+      description:
+        $ref: ${baseUri}/clients-help.json#/standardFlow
+    implicitFlowEnabled:
+      title:
+        $ref: ${baseUri}/clients.json#/implicitFlow
+      description:
+        $ref: ${baseUri}/clients-help.json#/implicitFlow
+    directAccessGrantsEnabled:
+      title:
+        $ref: ${baseUri}/clients.json#/directAccess
+      description:
+        $ref: ${baseUri}/clients-help.json#/directAccess
+    serviceAccountsEnabled:
+      title:
+        $ref: ${baseUri}/clients.json#/serviceAccount
+      description:
+        $ref: ${baseUri}/clients-help.json#/serviceAccount
+    authorizationServicesEnabled:
+      title:
+        $ref: ${baseUri}/clients.json#/authorization
+      description:
+        $ref: ${baseUri}/clients-help.json#/authorization
+    publicClient:
+      title:
+        $ref: ${baseUri}/clients.json#/clientAuthentication
+      description:
+        $ref: ${baseUri}/clients-help.json#/authentication
+    fullScopeAllowed:
+      title:
+        $ref: ${baseUri}/clients.json#/fullScopeAllowed
+      description:
+        $ref: ${baseUri}/clients-help.json#/fullScopeAllowed
+    protocol:
+      title:
+        $ref: ${baseUri}/clients.json#/protocol
+    attributes:
+      properties:
+        ## Settings
+        post.logout.redirect.uris:
+          title:
+            $ref: ${baseUri}/clients.json#/validPostLogoutRedirectUri
+          description:
+            $ref: ${baseUri}/clients-help.json#/validRedirectURIs
+
+        ## Credentials
+        token.endpoint.auth.signing.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/signatureAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/signature-algorithm
+        x509.allow.regex.pattern.comparison:
+          title:
+            $ref: ${baseUri}/clients.json#/allowRegexComparison
+          description:
+            $ref: ${baseUri}/clients-help.json#/allowRegexComparison
+        x509.subjectdn:
+          title:
+            $ref: ${baseUri}/clients.json#/subject
+          description:
+            $ref: ${baseUri}/clients-help.json#/subject
+
+        ## Advanced
+        # Fine grain OpenID Connect configuration
+        logoUri:
+          title:
+            $ref: ${baseUri}/clients.json#/logoUrl
+          description:
+            $ref: ${baseUri}/clients-help.json#/logoUrl
+        policyUri:
+          title:
+            $ref: ${baseUri}/clients.json#/policyUrl
+          description:
+            $ref: ${baseUri}/clients-help.json#/policyUrl
+        tosUri:
+          title:
+            $ref: ${baseUri}/clients.json#/termsOfServiceUrl
+          description:
+            $ref: ${baseUri}/clients-help.json#/termsOfServiceUrl
+        access.token.signed.response.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/accessTokenSignatureAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/accessTokenSignatureAlgorithm
+        id.token.signed.response.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/idTokenSignatureAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/idTokenSignatureAlgorithm
+        id.token.encrypted.response.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/idTokenEncryptionKeyManagementAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/idTokenEncryptionKeyManagementAlgorithm
+        id.token.encrypted.response.enc:
+          title:
+            $ref: ${baseUri}/clients.json#/idTokenEncryptionContentEncryptionAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/idTokenEncryptionContentEncryptionAlgorithm
+        user.info.response.signature.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/userInfoSignedResponseAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/userInfoSignedResponseAlgorithm
+        user.info.encrypted.response.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/userInfoResponseEncryptionKeyManagementAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/userInfoResponseEncryptionKeyManagementAlgorithm
+        user.info.encrypted.response.enc:
+          title:
+            $ref: ${baseUri}/clients.json#/userInfoResponseEncryptionContentEncryptionAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/userInfoResponseEncryptionContentEncryptionAlgorithm
+        request.object.signature.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/requestObjectSignatureAlgorithm
+          description:
+            $ref: ${baseUri}/clients-help.json#/requestObjectSignatureAlgorithm
+        request.object.encryption.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/requestObjectEncryption
+          description:
+            $ref: ${baseUri}/clients-help.json#/requestObjectEncryption
+        request.object.encryption.enc:
+          title:
+            $ref: ${baseUri}/clients.json#/requestObjectEncoding
+          description:
+            $ref: ${baseUri}/clients-help.json#/requestObjectEncoding
+        request.object.required:
+          title:
+            $ref: ${baseUri}/clients.json#/requestObjectRequired
+          description:
+            $ref: ${baseUri}/clients-help.json#/requestObjectRequired
+        authorization.signed.response.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/authorizationSignedResponseAlg
+          description:
+            $ref: ${baseUri}/clients-help.json#/authorizationSignedResponseAlg
+        authorization.encrypted.response.alg:
+          title:
+            $ref: ${baseUri}/clients.json#/authorizationEncryptedResponseAlg
+          description:
+            $ref: ${baseUri}/clients-help.json#/authorizationEncryptedResponseAlg
+        authorization.encrypted.response.enc:
+          title:
+            $ref: ${baseUri}/clients.json#/authorizationEncryptedResponseEnc
+          description:
+            $ref: ${baseUri}/clients-help.json#/authorizationEncryptedResponseEnc
+
+        # Open ID Connect Compatibility Modes
+        exclude.session.state.from.auth.response:
+          title:
+            $ref: ${baseUri}/clients.json#/excludeSessionStateFromAuthenticationResponse
+          description:
+            $ref: ${baseUri}/clients-help.json#/excludeSessionStateFromAuthenticationResponse
+        use.refresh.tokens:
+          title:
+            $ref: ${baseUri}/clients.json#/useRefreshTokens
+          description:
+            $ref: ${baseUri}/clients-help.json#/useRefreshTokens
+        client_credentials.use_refresh_token:
+          title:
+            $ref: ${baseUri}/clients.json#/useRefreshTokenForClientCredentialsGrant
+          description:
+            $ref: ${baseUri}/clients-help.json#/useRefreshTokenForClientCredentialsGrant
+        token.response.type.bearer.lower-case:
+          title:
+            $ref: ${baseUri}/clients.json#/useLowerCaseBearerType
+          description:
+            $ref: ${baseUri}/clients-help.json#/useLowerCaseBearerType
+
+        # Advanced Settings
+        access.token.lifespan:
+          title:
+            $ref: ${baseUri}/clients.json#/accessTokenLifespan
+          description:
+            $ref: ${baseUri}/clients-help.json#/accessTokenLifespan
+        client.session.idle.timeout:
+          title:
+            $ref: ${baseUri}/clients.json#/clientSessionIdle
+          description:
+            $ref: ${baseUri}/clients-help.json#/clientSessionIdle
+        client.session.max.lifespan:
+          title:
+            $ref: ${baseUri}/clients.json#/clientSessionMax
+          description:
+            $ref: ${baseUri}/clients-help.json#/clientSessionMax
+        client.offline.session.idle.timeout:
+          title:
+            $ref: ${baseUri}/clients.json#/clientOfflineSessionIdle
+          description:
+            $ref: ${baseUri}/clients-help.json#/clientOfflineSessionIdle
+        client.offline.session.max.lifespan:
+          title:
+            $ref: ${baseUri}/clients.json#/clientOfflineSessionMax
+          description:
+            $ref: ${baseUri}/clients-help.json#/clientOfflineSessionMax
+        tls.client.certificate.bound.access.tokens:
+          title:
+            $ref: ${baseUri}/clients.json#/oAuthMutual
+          description:
+            $ref: ${baseUri}/clients-help.json#/oAuthMutual
+        pkce.code.challenge.method:
+          title:
+            $ref: ${baseUri}/clients.json#/keyForCodeExchange
+          description:
+            $ref: ${baseUri}/clients-help.json#/keyForCodeExchange
+        require.pushed.authorization.requests:
+          title:
+            $ref: ${baseUri}/clients.json#/pushedAuthorizationRequestRequired
+          description:
+            $ref: ${baseUri}/clients-help.json#/pushedAuthorizationRequestRequired
+    authenticationFlowBindingOverrides:
+      title:
+        $ref: ${baseUri}/clients.json#/authenticationOverrides
+      properties:
+        browser:
+          title:
+            $ref: ${baseUri}/clients.json#/browserFlow
+          description:
+            $ref: ${baseUri}/clients-help.json#/browserFlow
+        direct_grant:
+          title:
+            $ref: ${baseUri}/clients.json#/directGrant
+          description:
+            $ref: ${baseUri}/clients-help.json#/directGrant
+    frontchannelLogout:
+      title:
+        $ref: ${baseUri}/clients.json#/frontchannelLogout
+      description:
+        $ref: ${baseUri}/clients-help.json#/frontchannelLogout
+
+RealmRepresentation:
+  properties:
+    realm:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/realmId
+    displayName:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/displayName
+    displayNameHtml:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/htmlDisplayName
+    sslRequired:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/requireSsl
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/requireSsl
+    defaultSignatureAlgorithm:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/defaultSigAlg
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/defaultSigAlg
+    revokeRefreshToken:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/revokeRefreshToken
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/revokeRefreshToken
+    refreshTokenMaxReuse:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/refreshTokenMaxReuse
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/refreshTokenMaxReuse
+    accessTokenLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/accessTokenLifespan
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/accessTokenLifespan
+    accessTokenLifespanForImplicitFlow:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/accessTokenLifespanImplicitFlow
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/accessTokenLifespanImplicitFlow
+    ssoSessionIdleTimeout:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/SSOSessionIdle
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/ssoSessionIdle
+    ssoSessionMaxLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/SSOSessionMax
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/ssoSessionMax
+    ssoSessionMaxLifespanRememberMe:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/SSOSessionMaxRememberMe
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/ssoSessionMaxRememberMe
+    ssoSessionIdleTimeoutRememberMe:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/SSOSessionIdleRememberMe
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/ssoSessionIdleRememberMe
+    offlineSessionIdleTimeout:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/offlineSessionIdle
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/offlineSessionIdle
+    offlineSessionMaxLifespanEnabled:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/offlineSessionMaxLimited
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/offlineSessionMaxLimited
+    offlineSessionMaxLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/offlineSessionMax
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/offlineSessionMax
+    clientSessionIdleTimeout:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/clientSessionIdle
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/clientSessionIdle
+    clientSessionMaxLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/clientSessionMax
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/clientSessionMax
+    accessCodeLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/clientLoginTimeout
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/clientLoginTimeout
+    accessCodeLifespanUserAction:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/loginActionTimeout
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/loginActionTimeout
+    accessCodeLifespanLogin:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/loginTimeout
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/loginTimeout
+    actionTokenGeneratedByAdminLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/defaultAdminInitiated
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/defaultAdminInitiatedActionLifespan
+    actionTokenGeneratedByUserLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/userInitiatedActionLifespan
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/userInitiatedActionLifespan
+    registrationAllowed:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/userRegistration
+      description:
+        $ref: ${baseUri}/realm-settings.json#/userRegistrationHelpText
+    registrationEmailAsUsername:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/registrationEmailAsUsername
+      description:
+        $ref: ${baseUri}/realm-settings.json#/emailAsUsernameHelpText
+    rememberMe:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/rememberMe
+      description:
+        $ref: ${baseUri}/realm-settings.json#/rememberMeHelpText
+    verifyEmail:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/verifyEmail
+      description:
+        $ref: ${baseUri}/realm-settings.json#/verifyEmailHelpText
+    loginWithEmailAllowed:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/loginWithEmailAllowed
+      description:
+        $ref: ${baseUri}/realm-settings.json#/loginWithEmailHelpText
+    duplicateEmailsAllowed:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/duplicateEmailsAllowed
+      description:
+        $ref: ${baseUri}/realm-settings.json#/duplicateEmailsHelpText
+    resetPasswordAllowed:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/forgotPassword
+      description:
+        $ref: ${baseUri}/realm-settings.json#/forgotPasswordHelpText
+    editUsernameAllowed:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/editUsernameAllowed
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/editUsername
+    browserSecurityHeaders:
+      properties:
+        contentSecurityPolicy:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/contentSecurityPolicy
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/contentSecurityPolicy
+        contentSecurityPolicyReportOnly:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/contentSecurityPolicyReportOnly
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/contentSecurityPolicyReportOnly
+        strictTransportSecurity:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/strictTransportSecurity
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/strictTransportSecurity
+        xContentTypeOptions:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/xContentTypeOptions
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/xContentTypeOptions
+        xFrameOptions:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/xFrameOptions
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/xFrameOptions
+        xRobotsTag:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/xRobotsTag
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/xRobotsTag
+        xXSSProtection:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/xXSSProtection
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/xXSSProtection
+    smtpServer:
+      properties:
+        from:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/from
+        fromDisplayName:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/fromDisplayName
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/fromDisplayName
+        replyTo:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/replyTo
+        replyToDisplayName:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/replyToDisplayName
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/replyToDisplayName
+        envelopeFrom:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/envelopeFrom
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/envelopeFrom
+        host:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/host
+        port:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/port
+        ssl:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/enableSSL
+        starttls:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/enableStartTLS
+        auth:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/authentication
+        user:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/username
+        password:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/password
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/password
+    loginTheme:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/loginTheme
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/loginTheme
+    accountTheme:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/accountTheme
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/loginTheme
+    adminTheme:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/adminTheme
+    emailTheme:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/emailTheme
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/emailTheme
+    bruteForceDetection:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/bruteForceDetection
+    permanentLockout:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/permanentLockout
+    maxFailureWaitSeconds:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/maxFailureWaitSeconds
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/maxFailureWaitSeconds
+    minimumQuickLoginWaitSeconds:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/minimumQuickLoginWaitSeconds
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/minimumQuickLoginWaitSeconds
+    waitIncrementSeconds:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/waitIncrementSeconds
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/waitIncrementSeconds
+    quickLoginCheckMilliSeconds:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/quickLoginCheckMilliSeconds
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/quickLoginCheckMilliSeconds
+    maxDeltaTimeSeconds:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/maxDeltaTimeSeconds
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/maxDeltaTimeSeconds
+    failureFactor:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/failureFactor
+      description:
+        $ref: ${baseUri}/realm-settings.json#/failureFactor
+    eventsEnabled:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/saveEvents
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/save-user-events
+    eventsExpiration:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/expiration
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/expiration
+    eventsListeners:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/eventListeners
+      description:
+        $ref: ${baseUri}/realm-settings.json#/eventListenersHelpText
+    adminEventsEnabled:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/saveEvents
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/save-admin-events
+    adminEventsDetailsEnabled:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/includeRepresentation
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/includeRepresentation
+    internationalizationEnabled:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/internationalization
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/internationalization
+    supportedLocales:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/supportedLocales
+    defaultLocale:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/defaultLocale
+    otpPolicyType:
+      title:
+        $ref: ${baseUri}/authentication.json#/otpType
+      description:
+        $ref: ${baseUri}/authentication-help.json#/otpType
+    otpPolicyAlgorithm:
+      title:
+        $ref: ${baseUri}/authentication.json#/otpHashAlgorithm
+      description:
+        $ref: ${baseUri}/authentication-help.json#/otpHashAlgorithm
+    otpPolicyInitialCounter:
+      title:
+        $ref: ${baseUri}/authentication.json#/initialCounter
+    otpPolicyDigits:
+      title:
+        $ref: ${baseUri}/authentication.json#/otpPolicyDigits
+      description:
+        $ref: ${baseUri}/authentication-help.json#/otpPolicyDigits
+    otpPolicyLookAheadWindow:
+      title:
+        $ref: ${baseUri}/authentication.json#/lookAround
+      description:
+        $ref: ${baseUri}/authentication-help.json#/lookAround
+    otpPolicyPeriod:
+      title:
+        $ref: ${baseUri}/authentication.json#/otpPolicyPeriod
+      description:
+        $ref: ${baseUri}/authentication-help.json#/otpPolicyPeriod
+    otpPolicyCodeReusable:
+      title:
+        $ref: ${baseUri}/authentication.json#/otpPolicyCodeReusable
+      description:
+        $ref: ${baseUri}/authentication-help.json#/otpPolicyCodeReusable
+    webAuthnPolicyRpEntityName:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyRpEntityName
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyRpEntityName
+    webAuthnPolicySignatureAlgorithms:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicySignatureAlgorithms
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicySignatureAlgorithms
+    webAuthnPolicyRpId:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyRpId
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyRpId
+    webAuthnPolicyAttestationConveyancePreference:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAttestationConveyancePreference
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAttestationConveyancePreference
+    webAuthnPolicyAuthenticatorAttachment:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAuthenticatorAttachment
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAuthenticatorAttachment
+    webAuthnPolicyRequireResidentKey:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyRequireResidentKey
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyRequireResidentKey
+    webAuthnPolicyUserVerificationRequirement:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyUserVerificationRequirement
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyUserVerificationRequirement
+    webAuthnPolicyCreateTimeout:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyCreateTimeout
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyCreateTimeout
+    webAuthnPolicyAvoidSameAuthenticatorRegister:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAvoidSameAuthenticatorRegister
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAvoidSameAuthenticatorRegister
+    webAuthnPolicyAcceptableAaguids:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAcceptableAaguids
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAcceptableAaguids
+    webAuthnPolicyPasswordlessRpEntityName:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyRpEntityName
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyRpEntityName
+    webAuthnPolicyPasswordlessSignatureAlgorithms:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicySignatureAlgorithms
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicySignatureAlgorithms
+    webAuthnPolicyPasswordlessRpId:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyRpId
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyRpId
+    webAuthnPolicyPasswordlessAttestationConveyancePreference:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAttestationConveyancePreference
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAttestationConveyancePreference
+    webAuthnPolicyPasswordlessAuthenticatorAttachment:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAuthenticatorAttachment
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAuthenticatorAttachment
+    webAuthnPolicyPasswordlessRequireResidentKey:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyRequireResidentKey
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyRequireResidentKey
+    webAuthnPolicyPasswordlessUserVerificationRequirement:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyUserVerificationRequirement
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyUserVerificationRequirement
+    webAuthnPolicyPasswordlessCreateTimeout:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyCreateTimeout
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyCreateTimeout
+    webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAvoidSameAuthenticatorRegister
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAvoidSameAuthenticatorRegister
+    webAuthnPolicyPasswordlessAcceptableAaguids:
+      title:
+        $ref: ${baseUri}/authentication.json#/webAuthnPolicyAcceptableAaguids
+      description:
+        $ref: ${baseUri}/authentication-help.json#/webAuthnPolicyAcceptableAaguids
+    userManagedAccessAllowed:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/userManagedAccess
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/userManagedAccess
+    oauth2DeviceCodeLifespan:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/oAuthDeviceCodeLifespan
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/oAuthDeviceCodeLifespan
+    oauth2DevicePollingInterval:
+      title:
+        $ref: ${baseUri}/realm-settings.json#/oAuthDevicePollingInterval
+      description:
+        $ref: ${baseUri}/realm-settings-help.json#/oAuthDevicePollingInterval
+    attributes:
+      properties:
+        adminEventsExpiration:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/expiration
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/expiration
+        cibaAuthRequestedUserHint:
+          title:
+            $ref: ${baseUri}/authentication.json#/cibaAuthRequestedUserHint
+          description:
+            $ref: ${baseUri}/authentication-help.json#/cibaAuthRequestedUserHint
+        cibaBackchannelTokenDeliveryMode:
+          title:
+            $ref: ${baseUri}/authentication.json#/cibaBackchannelTokenDeliveryMode
+          description:
+            $ref: ${baseUri}/authentication-help.json#/cibaBackchannelTokenDeliveryMode
+        cibaExpiresIn:
+          title:
+            $ref: ${baseUri}/authentication.json#/cibaExpiresIn
+          description:
+            $ref: ${baseUri}/authentication-help.json#/cibaExpiresIn
+        cibaInterval:
+          title:
+            $ref: ${baseUri}/authentication.json#/cibaInterval
+          description:
+            $ref: ${baseUri}/authentication-help.json#/cibaInterval
+        frontendUrl:
+          title:
+            $ref: ${baseUri}/realm-settings.json#/frontendUrl
+          description:
+            $ref: ${baseUri}/realm-settings-help.json#/frontendUrl

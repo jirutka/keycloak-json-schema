@@ -20,6 +20,84 @@ ProtocolMapperRepresentation:
 
 ClientRepresentation:
   properties:
+    authenticationFlowBindingOverrides:
+      properties:
+        browser:
+          type: string
+        direct_grant:
+          type: string
+    attributes:
+      properties:
+        ## Settings
+        post.logout.redirect.uris:
+          type: string
+        ## Credentials
+        token.endpoint.auth.signing.alg:
+          type: string
+        x509.allow.regex.pattern.comparison: &string-bool
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - ""
+        x509.subjectdn:
+          type: string
+        ## Advanced
+        # Fine grain OpenID Connect configuration
+        logoUri: &string-uri-ref
+          oneOf:
+            - type: string
+              format: uri-reference
+            - type: string
+              enum:
+                - ""
+        policyUri: *string-uri-ref
+        tosUri: *string-uri-ref
+        access.token.signed.response.alg:
+          type: string
+        id.token.signed.response.alg:
+          type: string
+        id.token.encrypted.response.alg:
+          type: string
+        id.token.encrypted.response.enc:
+          type: string
+        user.info.response.signature.alg:
+          type: string
+        user.info.encrypted.response.alg:
+          type: string
+        user.info.encrypted.response.enc:
+          type: string
+        request.object.signature.alg:
+          type: string
+        request.object.encryption.alg:
+          type: string
+        request.object.encryption.enc:
+          type: string
+        request.object.required:
+          type: string
+        authorization.signed.response.alg:
+          type: string
+        authorization.encrypted.response.alg:
+          type: string
+        authorization.encrypted.response.enc:
+          type: string
+        # Open ID Connect Compatibility Modes
+        exclude.session.state.from.auth.response: *string-bool
+        use.refresh.tokens: *string-bool
+        client_credentials.use_refresh_token: *string-bool
+        token.response.type.bearer.lower-case: *string-bool
+        # Advanced Settings
+        access.token.lifespan: &string-uint
+          type: string
+          pattern: "^[0-9]*$"
+        client.session.idle.timeout: *string-uint
+        client.session.max.lifespan: *string-uint
+        client.offline.session.idle.timeout: *string-uint
+        client.offline.session.max.lifespan: *string-uint
+        tls.client.certificate.bound.access.tokens: *string-bool
+        pkce.code.challenge.method:
+          type: string
+        require.pushed.authorization.requests: *string-bool
     clientAuthenticatorType:
       type: string
       enum:
@@ -47,6 +125,7 @@ RealmRepresentation:
   properties:
     attributes:
       properties:
+        adminEventsExpiration: *string-uint
         cibaAuthRequestedUserHint:
           type: string
           enum:
@@ -56,12 +135,8 @@ RealmRepresentation:
           enum:
             - ping
             - poll
-        cibaExpiresIn:
-          format: string
-          pattern: "^[0-9]*$"
-        cibaInterval:
-          format: string
-          pattern: "^[0-9]*$"
+        cibaExpiresIn: *string-uint
+        cibaInterval: *string-uint
         frontendUrl:
           oneOf:
             - type: string
@@ -96,12 +171,7 @@ RealmRepresentation:
       type: object
       additionalProperties: false
       properties:
-        auth:
-          type: string
-          enum:
-            - "true"
-            - "false"
-            - ""
+        auth: *string-bool
         envelopeFrom:
           type: string
         from:
@@ -123,18 +193,8 @@ RealmRepresentation:
           type: string
         replyToDisplayName:
           type: string
-        ssl:
-          type: string
-          enum:
-            - "true"
-            - "false"
-            - ""
-        starttls:
-          type: string
-          enum:
-            - "true"
-            - "false"
-            - ""
+        ssl: *string-bool
+        starttls: *string-bool
         user:
           type: string
     sslRequired:

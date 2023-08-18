@@ -21,14 +21,15 @@ jobs:
 
       - name: Convert OpenAPI definitions to JSON schemas
         run: |
+          srcdir=keycloak-openapi/OpenApiDefinitions
           mkdir -p public
-          rm keycloak-openapi/OpenApiDefinitions/keycloak-16*.json
-          for file in keycloak-openapi/OpenApiDefinitions/*.json; do
-            ./bin/convert $file patches/*.yml > public/${file##*/}
+          for ver in 17.0.1 18.0.0 19.0.0 20.0.0; do
+              ./bin/convert $srcdir/keycloak-$ver.json patches/*.yml > public/keycloak-$ver.json
           done
-          for file in keycloak-openapi/OpenApiDefinitions/keycloak-2[1-9]*.json; do
-            ./bin/convert $file patches/*.yml patches/v21+/*.yml > public/${file##*/}
-          done
+          ./bin/convert $srcdir/keycloak-21.0.0.json patches/*.yml patches/v21+/*.yml \
+              > public/keycloak-21.0.0.json
+          ./bin/convert $srcdir/keycloak-22.0.1.json patches/*.yml patches/v21+/*.yml patches/v22/*.yml \
+              > public/keycloak-22.0.1.json
 
       - name: Validate JSON schemas
         run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'public/*.json'
