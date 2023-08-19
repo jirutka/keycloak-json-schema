@@ -113,6 +113,28 @@ ClientScopeRepresentation:
         - openid-connect
         - saml
 
+IdentityProviderMapperRepresentation:
+  properties:
+    config:
+      properties:
+        attribute.friendly.name:
+          type: string
+        attribute.name.format:
+          type: string
+          enum:
+            - ATTRIBUTE_FORMAT_BASIC
+            - ATTRIBUTE_FORMAT_URI
+            - ATTRIBUTE_FORMAT_UNSPECIFIED
+        syncMode:
+          type: string
+          enum:
+            - INHERIT
+            - IMPORT
+            - LEGACY
+            - FORCE
+        user.attribute:
+          type: string
+
 IdentityProviderRepresentation:
   properties:
     config:

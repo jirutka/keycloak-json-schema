@@ -316,6 +316,32 @@ ClientRepresentation:
       description:
         $ref: ${baseUri}/clients-help.json#/frontchannelLogout
 
+IdentityProviderMapperRepresentation:
+  properties:
+    name:
+      title:
+        $ref: ${baseUri}/common.json#/name
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/addIdpMapperName
+    config:
+      # FIXME: This is incomplete.
+      properties:
+        attribute.friendly.name:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/mapperAttributeFriendlyName
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/friendlyName
+        syncMode:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/syncModeOverride
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/syncModeOverride
+        user.attribute:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/mapperUserAttributeName
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/userAttributeName
+
 IdentityProviderRepresentation:
   properties:
     alias:
