@@ -179,16 +179,23 @@ async function main (argv) {
       }
       return acc
     }, {})
-  }
 
-  const bundle = {
-    '$schema': schemaUri,
-    ...defs[topLevelType],
-    '$defs': defs,
-  }
-  delete bundle['$defs'][topLevelType]
+    const bundle = {
+      $schema: schemaUri,
+      ...defs[topLevelType],
+      $defs: defs,
+    }
+    delete bundle.$defs[topLevelType]
 
-  console.log(JSON.stringify(bundle, null, 2))
+    console.log(JSON.stringify(bundle, null, 2))
+
+  } else {
+    const bundle = {
+      $schema: schemaUri,
+      $defs: defs,
+    }
+    console.log(JSON.stringify(bundle, null, 2))
+  }
 }
 
 main(process.argv.slice(2)).catch(err => {

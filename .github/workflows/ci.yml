@@ -25,17 +25,17 @@ jobs:
           mkdir -p public
 
           for ver in 17.0.1 18.0.0 19.0.0 20.0.0; do
-              ./bin/convert $srcdir/keycloak-$ver.json patches/*.yml > public/keycloak-$ver.json
+              ./bin/convert $srcdir/keycloak-$ver.json patches/*.yml > public/keycloak-all-$ver.json
               ./bin/convert --only-realm-export $srcdir/keycloak-$ver.json patches/*.yml > public/keycloak-realm-$ver.json
           done
 
           ./bin/convert $srcdir/keycloak-21.0.0.json patches/*.yml patches/v21+/*.yml \
-              > public/keycloak-21.0.0.json
+              > public/keycloak-all-21.0.0.json
           ./bin/convert --only-realm-export $srcdir/keycloak-21.0.0.json patches/*.yml patches/v21+/*.yml \
               > public/keycloak-realm-21.0.0.json
 
           ./bin/convert $srcdir/keycloak-22.0.1.json patches/*.yml patches/v21+/*.yml patches/v22/*.yml \
-              > public/keycloak-22.0.1.json
+              > public/keycloak-all-22.0.1.json
           ./bin/convert --only-realm-export $srcdir/keycloak-22.0.1.json patches/*.yml patches/v21+/*.yml patches/v22/*.yml \
               > public/keycloak-realm-22.0.1.json
 
