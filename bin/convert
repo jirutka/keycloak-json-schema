@@ -8,6 +8,7 @@ const { default: RefParser } = require('@apidevtools/json-schema-ref-parser')
 const { default: $Ref } = require('@apidevtools/json-schema-ref-parser/dist/lib/ref')
 const { openapiSchemaToJsonSchema: toJsonSchema } = require('@openapi-contrib/openapi-schema-to-json-schema')
 const JsonMergePatch = require('json-merge-patch')
+const { JsonPointer } = require('json-ptr')
 const YAML = require('yaml')
 
 
@@ -76,10 +77,41 @@ function traverse (obj, visitor) {
   return obj
 }
 
+/** @type {(bundle: Record<string, any>, rootSchema: Record<string, any>) => Set<string>} */
+function findReferencedSchemas (bundle, rootSchema) {
+  const foundIds = new Set()
+
+  const crawl = (schema) => traverse(schema, obj => {
+    if (typeof obj !== 'object' || obj == null) {
+      return
+    }
+    if (typeof obj.$ref === 'string' && obj.$ref.startsWith('#/$defs/')) {
+      const { $ref } = obj
+      const schemaId = $ref.replace('#/$defs/', '')
+
+      if (!foundIds.has(schemaId)) {
+        foundIds.add(schemaId)
+        const refObj = JsonPointer.get(bundle, $ref)
+        if (!refObj) {
+          throw new Error(`Reference not found: ${$ref}`)
+        }
+        crawl(refObj)
+      }
+    }
+  })
+  crawl(rootSchema)
+
+  return foundIds
+}
+
 /** @type {(argv: string[]) => Promise<void>} */
 async function main (argv) {
+  let onlyRealm = argv[0] === '--only-realm-export'
+    ?  (argv.shift(), true)
+    : false
+
   if (argv.length < 1 || ['-h', '--help'].includes(argv[0])) {
-    console.warn('Usage: convert <openapi> <merge-patch>...')
+    console.warn('Usage: convert [--only-realm-export] <openapi> <merge-patch>...')
     process.exit(1)
   }
 
@@ -136,6 +168,17 @@ async function main (argv) {
   if (missing.length > 0) {
     console.warn(`Missing references: ${missing.join(', ')}`)
     process.exit(1)
+  }
+
+  if (onlyRealm) {
+    const schemaIds = findReferencedSchemas({ $defs: defs }, defs[topLevelType])
+
+    defs = Object.keys(defs).reduce((acc, schemaId) => {
+      if (schemaId === topLevelType || schemaIds.has(schemaId)) {
+        acc[schemaId] = defs[schemaId]
+      }
+      return acc
+    }, {})
   }
 
   const bundle = {
