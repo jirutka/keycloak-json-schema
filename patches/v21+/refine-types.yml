@@ -113,6 +113,76 @@ ClientScopeRepresentation:
         - openid-connect
         - saml
 
+IdentityProviderRepresentation:
+  properties:
+    config:
+      properties:
+        ## SAML settings
+        entityId:
+          type: string
+        idpEntityId:
+          type: string
+        singleSignOnServiceUrl:
+          type: string
+        backchannelSupported: *string-bool
+        nameIDPolicyFormat:
+          type: string
+        principalType:
+          type: string
+          enum:
+            - Subject NameID
+            - ATTRIBUTE
+            - FRIENDLY_ATTRIBUTE
+        principalAttribute:
+          type: string
+        allowCreate: *string-bool
+        postBindingResponse: *string-bool
+        postBindingAuthnRequest: *string-bool
+        postBindingLogout: *string-bool
+        wantAuthnRequestsSigned: *string-bool
+        signatureAlgorithm:
+          type: string
+        encryptionAlgorithm:
+          type: string
+        xmlSigKeyInfoKeyNameTransformer:
+          type: string
+          enum:
+            - NONE
+            - KEY_ID
+            - CERT_SUBJECT
+        wantAssertionsSigned: *string-bool
+        wantAssertionsEncrypted: *string-bool
+        forceAuthn: *string-bool
+        validateSignature: *string-bool
+        signingCertificate:
+          type: string
+        signSpMetadata: *string-bool
+        loginHint: *string-bool
+        allowedClockSkew: *string-uint
+        attributeConsumingServiceIndex: *string-uint
+
+        ## Requested AuthnContext Constraints (SAML)
+        authnContextComparisonType:
+          type: string
+          enum:
+            - exact
+            - minimum
+            - maximum
+            - better
+        authnContextClassRefs:
+          type: string
+        authnContextDeclRefs:
+          type: string
+
+        ## Advanced settings (SAML)
+        hideOnLoginPage: *string-bool
+        syncMode:
+          type: string
+          enum:
+            - IMPORT
+            - LEGACY
+            - FORCE
+
 RealmRepresentation:
   properties:
     attributes:

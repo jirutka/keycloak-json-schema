@@ -316,6 +316,204 @@ ClientRepresentation:
       description:
         $ref: ${baseUri}/clients-help.json#/frontchannelLogout
 
+IdentityProviderRepresentation:
+  properties:
+    alias:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/alias
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/alias
+    config:
+      properties:
+        ## SAML settings
+        entityId:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/serviceProviderEntityId
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/serviceProviderEntityId
+        idpEntityId:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/identityProviderEntityId
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/identityProviderEntityId
+        singleSignOnServiceUrl:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/ssoServiceUrl
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/ssoServiceUrl
+        backchannelSupported:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/backchannelLogout
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/backchannelLogout
+        nameIDPolicyFormat:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/nameIdPolicyFormat
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/nameIdPolicyFormat
+        principalType:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/principalType
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/principalType
+        principalAttribute:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/principalAttribute
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/principalAttribute
+        allowCreate:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/allowCreate
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/allowCreate
+        postBindingResponse:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/httpPostBindingResponse
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/httpPostBindingResponse
+        postBindingAuthnRequest:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/httpPostBindingAuthnRequest
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/httpPostBindingAuthnRequest
+        postBindingLogout:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/httpPostBindingLogout
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/httpPostBindingLogout
+        wantAuthnRequestsSigned:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/wantAuthnRequestsSigned
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/wantAuthnRequestsSigned
+        signatureAlgorithm:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/signatureAlgorithm
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/signatureAlgorithm
+        encryptionAlgorithm:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/encryptionAlgorithm
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/encryptionAlgorithm
+        xmlSigKeyInfoKeyNameTransformer:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/samlSignatureKeyName
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/samlSignatureKeyName
+        wantAssertionsSigned:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/wantAssertionsSigned
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/wantAssertionsSigned
+        wantAssertionsEncrypted:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/wantAssertionsEncrypted
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/wantAssertionsEncrypted
+        forceAuthn:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/forceAuthentication
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/forceAuthentication
+        validateSignature:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/validateSignature
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/validateSignature
+        signingCertificate:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/validatingX509Certs
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/validatingX509Certs
+        signSpMetadata:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/signServiceProviderMetadata
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/signServiceProviderMetadata
+        loginHint:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/passSubject
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/passSubject
+        allowedClockSkew:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/allowedClockSkew
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/allowedClockSkew
+        attributeConsumingServiceIndex:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/attributeConsumingServiceIndex
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/attributeConsumingServiceIndex
+
+        ## Requested AuthnContext Constraints (SAML)
+        authnContextComparisonType:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/comparison
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/comparison
+        authnContextClassRefs:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/authnContextClassRefs
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/authnContextClassRefs
+        authnContextDeclRefs:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/authnContextDeclRefs
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/authnContextDeclRefs
+
+        ## Advanced settings (SAML)
+        hideOnLoginPage:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/hideOnLoginPage
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/hideOnLoginPage
+        syncMode:
+          title:
+            $ref: ${baseUri}/identity-providers.json#/syncMode
+          description:
+            $ref: ${baseUri}/identity-providers-help.json#/syncMode
+    enabled:
+      title:
+        $ref: ${baseUri}/common.json#/enabled
+    linkOnly:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/accountLinkingOnly
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/accountLinkingOnly
+    firstBrokerLoginFlowAlias:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/firstBrokerLoginFlowAlias
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/firstBrokerLoginFlowAlias
+    postBrokerLoginFlowAlias:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/postBrokerLoginFlowAlias
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/postBrokerLoginFlowAlias
+    storeToken:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/storeTokens
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/storeTokens
+    addReadTokenRoleOnCreate:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/storedTokensReadable
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/storedTokensReadable
+    trustEmail:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/trustEmail
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/trustEmail
+    displayName:
+      title:
+        $ref: ${baseUri}/identity-providers.json#/displayName
+      description:
+        $ref: ${baseUri}/identity-providers-help.json#/displayName
+
 RealmRepresentation:
   properties:
     realm:
