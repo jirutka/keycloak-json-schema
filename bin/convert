@@ -4,11 +4,12 @@
 
 const FS = require('node:fs/promises')
 
-const { default: RefParser } = require('@apidevtools/json-schema-ref-parser')
+const { default: RefParser, ParserError } = require('@apidevtools/json-schema-ref-parser')
 const { default: $Ref } = require('@apidevtools/json-schema-ref-parser/dist/lib/ref')
 const { openapiSchemaToJsonSchema: toJsonSchema } = require('@openapi-contrib/openapi-schema-to-json-schema')
 const JsonMergePatch = require('json-merge-patch')
 const { JsonPointer } = require('json-ptr')
+const { getProperties } = require('properties-file')
 const YAML = require('yaml')
 
 
@@ -20,6 +21,33 @@ const topLevelType = 'RealmRepresentation'
   $Ref.isAllowed$Ref = (value, options) => {
     return _isAllowed$Ref(value, options) && value.$ref.startsWith('https://')
   }
+}
+
+const RefPropertiesParser = {
+  order: 100,
+  canParse: '.properties',
+
+  async parse (file) {
+    let data = file.data
+    if (Buffer.isBuffer(data)) {
+      data = data.toString()
+    }
+
+    if (typeof data === 'string') {
+      if (data.trim().length === 0) {
+        return // This mirrors the YAML behavior
+      } else {
+        try {
+          return getProperties(data)
+        } catch (err) {
+          throw new ParserError(err.message, file.url)
+        }
+      }
+    } else {
+      // data is already a JavaScript value (object, array, number, null, NaN, etc.)
+      return data
+    }
+  },
 }
 
 /** @type {(filepath: string, reviver?: (key: unknown, value: unknown) => unknown) => Promise<any>} */
@@ -41,7 +69,11 @@ async function parseFile (filepath, reviver) {
 async function applyMergePatch (target, patchFile) {
   let patch = await parseFile(patchFile, baseUriRefReviver())
   // Dereference external $ref(s).
-  patch = await RefParser.dereference(patch)
+  patch = await RefParser.dereference(patch, {
+    parse: {
+      properties: RefPropertiesParser,
+    },
+  })
   return JsonMergePatch.apply(target, patch)
 }
 
