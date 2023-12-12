@@ -162,16 +162,20 @@ async function main (argv) {
     return acc
   }, {})
 
-  // Fix unhandled inheritance.
+  // Fix unhandled inheritance (<23.0.0).
   // https://github.com/dahag-ag/keycloak-openapi/issues/7
-  Object.assign(
-    defs.AuthenticationExecutionExportRepresentation.properties,
-    defs.AbstractAuthenticationExecutionRepresentation.properties,
-  )
-  Object.assign(
-    defs.PolicyRepresentation.properties,
-    defs.AbstractPolicyRepresentation.properties,
-  )
+  if ('AbstractAuthenticationExecutionRepresentation' in defs) {
+    Object.assign(
+      defs.AuthenticationExecutionExportRepresentation.properties,
+      defs.AbstractAuthenticationExecutionRepresentation.properties,
+    )
+  }
+  if ('AbstractPolicyRepresentation' in defs) {
+    Object.assign(
+      defs.PolicyRepresentation.properties,
+      defs.AbstractPolicyRepresentation.properties,
+    )
+  }
 
   for (const patchFile of argv.slice(1)) {
     defs = await applyMergePatch(defs, patchFile)

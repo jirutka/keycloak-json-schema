@@ -39,6 +39,11 @@ jobs:
           ./bin/convert --only-realm-export $srcdir/keycloak-22.0.1.json patches/*.yml patches/v21+/*.yml patches/v22/*.yml \
               > public/keycloak-realm-22.0.1.json
 
+          ./bin/convert $srcdir/keycloak-23.0.0.json patches/v21+/*.yml patches/v23/*.yml \
+              > public/keycloak-all-23.0.0.json
+          ./bin/convert --only-realm-export $srcdir/keycloak-23.0.0.json patches/v21+/*.yml patches/v23/*.yml \
+              > public/keycloak-realm-23.0.0.json
+
       - name: Validate JSON schemas
         run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'public/*.json'
 
