@@ -1,0 +1,1046 @@
+# JSON Merge Patch with schema title and description parameters as references
+# to the Keycloak Admin UI messages bundle.
+
+$baseUri: https://raw.githubusercontent.com/keycloak/keycloak/25.0.6/js/apps/admin-ui/maven-resources/theme/keycloak.v2/admin/messages/messages_en.properties
+
+ClientRepresentation:
+  properties:
+    name:
+      title:
+        $ref: ${baseUri}#/clientName
+      description:
+        $ref: ${baseUri}#/clientNameHelp
+    description:
+      title:
+        $ref: ${baseUri}#/description
+      description:
+        $ref: ${baseUri}#/descriptionHelp
+    clientId:
+      title:
+        $ref: ${baseUri}#/clientId
+      description:
+        $ref: ${baseUri}#/clientIdHelp
+    enabled:
+      title:
+        $ref: ${baseUri}#/enabled
+      description:
+        $ref: ${baseUri}#/enableDisable
+    alwaysDisplayInConsole:
+      title:
+        $ref: ${baseUri}#/alwaysDisplayInUI
+      description:
+        $ref: ${baseUri}#/alwaysDisplayInUIHelp
+    rootUrl:
+      title:
+        $ref: ${baseUri}#/rootUrl
+      description:
+        $ref: ${baseUri}#/rootURLHelp
+    adminUrl:
+      title:
+        $ref: ${baseUri}#/adminURL
+      description:
+        $ref: ${baseUri}#/adminURLHelp
+    baseUrl:
+      title:
+        $ref: ${baseUri}#/homeURL
+      description:
+        $ref: ${baseUri}#/homeURLHelp
+    clientAuthenticatorType:
+      title:
+        $ref: ${baseUri}#/clientAuthenticator
+      description:
+        $ref: ${baseUri}#/clientAuthenticatorTypeHelp
+    secret:
+      title:
+        $ref: ${baseUri}#/clientSecret
+    registrationAccessToken:
+      title:
+        $ref: ${baseUri}#/registrationAccessToken
+      description:
+        $ref: ${baseUri}#/registrationAccessTokenHelp
+    redirectUris:
+      title:
+        $ref: ${baseUri}#/validRedirectUri
+      description:
+        $ref: ${baseUri}#/validRedirectURIsHelp
+    webOrigins:
+      title:
+        $ref: ${baseUri}#/webOrigins
+      description:
+        $ref: ${baseUri}#/webOriginsHelp
+    bearerOnly:
+      description:
+        $ref: ${baseUri}#/explainBearerOnly
+    consentRequired:
+      title:
+        $ref: ${baseUri}#/consentRequired
+      description:
+        $ref: ${baseUri}#/consentRequiredHelp
+    standardFlowEnabled:
+      title:
+        $ref: ${baseUri}#/standardFlow
+      description:
+        $ref: ${baseUri}#/standardFlowHelp
+    implicitFlowEnabled:
+      title:
+        $ref: ${baseUri}#/implicitFlow
+      description:
+        $ref: ${baseUri}#/implicitFlowHelp
+    directAccessGrantsEnabled:
+      title:
+        $ref: ${baseUri}#/directAccess
+      description:
+        $ref: ${baseUri}#/directAccessHelp
+    serviceAccountsEnabled:
+      title:
+        $ref: ${baseUri}#/serviceAccount
+      description:
+        $ref: ${baseUri}#/serviceAccountHelp
+    authorizationServicesEnabled:
+      title:
+        $ref: ${baseUri}#/authorization
+      description:
+        $ref: ${baseUri}#/authorizationHelp
+    publicClient:
+      title:
+        $ref: ${baseUri}#/clientAuthentication
+      description:
+        $ref: ${baseUri}#/authenticationHelp
+    fullScopeAllowed:
+      title:
+        $ref: ${baseUri}#/fullScopeAllowed
+      description:
+        $ref: ${baseUri}#/fullScopeAllowedHelp
+    protocol:
+      title:
+        $ref: ${baseUri}#/protocol
+    attributes:
+      properties:
+        ## Settings
+        post.logout.redirect.uris:
+          title:
+            $ref: ${baseUri}#/validPostLogoutRedirectUri
+          description:
+            $ref: ${baseUri}#/validRedirectURIsHelp
+
+        ## Credentials
+        token.endpoint.auth.signing.alg:
+          title:
+            $ref: ${baseUri}#/signatureAlgorithm
+          description:
+            $ref: ${baseUri}#/signatureAlgorithmHelp
+        x509.allow.regex.pattern.comparison:
+          title:
+            $ref: ${baseUri}#/allowRegexComparison
+          description:
+            $ref: ${baseUri}#/allowRegexComparisonHelp
+        x509.subjectdn:
+          title:
+            $ref: ${baseUri}#/subject
+          description:
+            $ref: ${baseUri}#/subjectHelp
+
+        ## Advanced
+        # Fine grain OpenID Connect configuration
+        logoUri:
+          title:
+            $ref: ${baseUri}#/logoUrl
+          description:
+            $ref: ${baseUri}#/logoUrlHelp
+        policyUri:
+          title:
+            $ref: ${baseUri}#/policyUrl
+          description:
+            $ref: ${baseUri}#/policyUrlHelp
+        tosUri:
+          title:
+            $ref: ${baseUri}#/termsOfServiceUrl
+          description:
+            $ref: ${baseUri}#/termsOfServiceUrlHelp
+        access.token.signed.response.alg:
+          title:
+            $ref: ${baseUri}#/accessTokenSignatureAlgorithm
+          description:
+            $ref: ${baseUri}#/accessTokenSignatureAlgorithmHelp
+        id.token.signed.response.alg:
+          title:
+            $ref: ${baseUri}#/idTokenSignatureAlgorithm
+          description:
+            $ref: ${baseUri}#/idTokenSignatureAlgorithmHelp
+        id.token.encrypted.response.alg:
+          title:
+            $ref: ${baseUri}#/idTokenEncryptionKeyManagementAlgorithm
+          description:
+            $ref: ${baseUri}#/idTokenEncryptionKeyManagementAlgorithmHelp
+        id.token.encrypted.response.enc:
+          title:
+            $ref: ${baseUri}#/idTokenEncryptionContentEncryptionAlgorithm
+          description:
+            $ref: ${baseUri}#/idTokenEncryptionContentEncryptionAlgorithmHelp
+        user.info.response.signature.alg:
+          title:
+            $ref: ${baseUri}#/userInfoSignedResponseAlgorithm
+          description:
+            $ref: ${baseUri}#/userInfoSignedResponseAlgorithmHelp
+        user.info.encrypted.response.alg:
+          title:
+            $ref: ${baseUri}#/userInfoResponseEncryptionKeyManagementAlgorithm
+          description:
+            $ref: ${baseUri}#/userInfoResponseEncryptionKeyManagementAlgorithmHelp
+        user.info.encrypted.response.enc:
+          title:
+            $ref: ${baseUri}#/userInfoResponseEncryptionContentEncryptionAlgorithm
+          description:
+            $ref: ${baseUri}#/userInfoResponseEncryptionContentEncryptionAlgorithmHelp
+        request.object.signature.alg:
+          title:
+            $ref: ${baseUri}#/requestObjectSignatureAlgorithm
+          description:
+            $ref: ${baseUri}#/requestObjectSignatureAlgorithmHelp
+        request.object.encryption.alg:
+          title:
+            $ref: ${baseUri}#/requestObjectEncryption
+          description:
+            $ref: ${baseUri}#/requestObjectEncryptionHelp
+        request.object.encryption.enc:
+          title:
+            $ref: ${baseUri}#/requestObjectEncoding
+          description:
+            $ref: ${baseUri}#/requestObjectEncodingHelp
+        request.object.required:
+          title:
+            $ref: ${baseUri}#/requestObjectRequired
+          description:
+            $ref: ${baseUri}#/requestObjectRequiredHelp
+        authorization.signed.response.alg:
+          title:
+            $ref: ${baseUri}#/authorizationSignedResponseAlg
+          description:
+            $ref: ${baseUri}#/authorizationSignedResponseAlgHelp
+        authorization.encrypted.response.alg:
+          title:
+            $ref: ${baseUri}#/authorizationEncryptedResponseAlg
+          description:
+            $ref: ${baseUri}#/authorizationEncryptedResponseAlgHelp
+        authorization.encrypted.response.enc:
+          title:
+            $ref: ${baseUri}#/authorizationEncryptedResponseEnc
+          description:
+            $ref: ${baseUri}#/authorizationEncryptedResponseEncHelp
+
+        # Open ID Connect Compatibility Modes
+        exclude.session.state.from.auth.response:
+          title:
+            $ref: ${baseUri}#/excludeSessionStateFromAuthenticationResponse
+          description:
+            $ref: ${baseUri}#/excludeSessionStateFromAuthenticationResponseHelp
+        use.refresh.tokens:
+          title:
+            $ref: ${baseUri}#/useRefreshTokens
+          description:
+            $ref: ${baseUri}#/useRefreshTokensHelp
+        client_credentials.use_refresh_token:
+          title:
+            $ref: ${baseUri}#/useRefreshTokenForClientCredentialsGrant
+          description:
+            $ref: ${baseUri}#/useRefreshTokenForClientCredentialsGrantHelp
+        token.response.type.bearer.lower-case:
+          title:
+            $ref: ${baseUri}#/useLowerCaseBearerType
+          description:
+            $ref: ${baseUri}#/useLowerCaseBearerTypeHelp
+
+        # Advanced Settings
+        access.token.lifespan:
+          title:
+            $ref: ${baseUri}#/accessTokenLifespan
+          description:
+            $ref: ${baseUri}#/accessTokenLifespanHelp
+        client.session.idle.timeout:
+          title:
+            $ref: ${baseUri}#/clientSessionIdle
+          description:
+            $ref: ${baseUri}#/clientSessionIdleHelp
+        client.session.max.lifespan:
+          title:
+            $ref: ${baseUri}#/clientSessionMax
+          description:
+            $ref: ${baseUri}#/clientSessionMaxHelp
+        client.offline.session.idle.timeout:
+          title:
+            $ref: ${baseUri}#/clientOfflineSessionIdle
+          description:
+            $ref: ${baseUri}#/clientOfflineSessionIdleHelp
+        client.offline.session.max.lifespan:
+          title:
+            $ref: ${baseUri}#/clientOfflineSessionMax
+          description:
+            $ref: ${baseUri}#/clientOfflineSessionMaxHelp
+        tls.client.certificate.bound.access.tokens:
+          title:
+            $ref: ${baseUri}#/oAuthMutual
+          description:
+            $ref: ${baseUri}#/oAuthMutualHelp
+        pkce.code.challenge.method:
+          title:
+            $ref: ${baseUri}#/keyForCodeExchange
+          description:
+            $ref: ${baseUri}#/keyForCodeExchangeHelp
+        require.pushed.authorization.requests:
+          title:
+            $ref: ${baseUri}#/pushedAuthorizationRequestRequired
+          description:
+            $ref: ${baseUri}#/pushedAuthorizationRequestRequiredHelp
+    authenticationFlowBindingOverrides:
+      title:
+        $ref: ${baseUri}#/authenticationOverrides
+      properties:
+        browser:
+          title:
+            $ref: ${baseUri}#/browserFlow
+          description:
+            $ref: ${baseUri}#/browserFlowHelp
+        direct_grant:
+          title:
+            $ref: ${baseUri}#/directGrant
+          description:
+            $ref: ${baseUri}#/directGrantHelp
+    frontchannelLogout:
+      title:
+        $ref: ${baseUri}#/frontchannelLogout
+      description:
+        $ref: ${baseUri}#/frontchannelLogoutHelp
+
+IdentityProviderMapperRepresentation:
+  properties:
+    name:
+      title:
+        $ref: ${baseUri}#/name
+      description:
+        $ref: ${baseUri}#/addIdpMapperNameHelp
+    config:
+      # FIXME: This is incomplete.
+      properties:
+        attribute.friendly.name:
+          title:
+            $ref: ${baseUri}#/mapperAttributeFriendlyName
+          description:
+            $ref: ${baseUri}#/friendlyName
+        syncMode:
+          title:
+            $ref: ${baseUri}#/syncModeOverride
+          description:
+            $ref: ${baseUri}#/syncModeOverrideHelp
+        user.attribute:
+          title:
+            $ref: ${baseUri}#/mapperUserAttributeName
+          description:
+            $ref: ${baseUri}#/userAttributeHelp
+
+IdentityProviderRepresentation:
+  properties:
+    alias:
+      title:
+        $ref: ${baseUri}#/alias
+      description:
+        $ref: ${baseUri}#/aliasHelp
+    config:
+      properties:
+        ## SAML settings
+        entityId:
+          title:
+            $ref: ${baseUri}#/serviceProviderEntityId
+          description:
+            $ref: ${baseUri}#/serviceProviderEntityIdHelp
+        idpEntityId:
+          title:
+            $ref: ${baseUri}#/identityProviderEntityId
+          description:
+            $ref: ${baseUri}#/identityProviderEntityIdHelp
+        singleSignOnServiceUrl:
+          title:
+            $ref: ${baseUri}#/ssoServiceUrl
+          description:
+            $ref: ${baseUri}#/ssoServiceUrlHelp
+        backchannelSupported:
+          title:
+            $ref: ${baseUri}#/backchannelLogout
+          description:
+            $ref: ${baseUri}#/backchannelLogoutHelp
+        nameIDPolicyFormat:
+          title:
+            $ref: ${baseUri}#/nameIdPolicyFormat
+          description:
+            $ref: ${baseUri}#/nameIdPolicyFormatHelp
+        principalType:
+          title:
+            $ref: ${baseUri}#/principalType
+          description:
+            $ref: ${baseUri}#/principalTypeHelp
+        principalAttribute:
+          title:
+            $ref: ${baseUri}#/principalAttribute
+          description:
+            $ref: ${baseUri}#/principalAttributeHelp
+        allowCreate:
+          title:
+            $ref: ${baseUri}#/allowCreate
+          description:
+            $ref: ${baseUri}#/allowCreateHelp
+        postBindingResponse:
+          title:
+            $ref: ${baseUri}#/httpPostBindingResponse
+          description:
+            $ref: ${baseUri}#/httpPostBindingResponseHelp
+        postBindingAuthnRequest:
+          title:
+            $ref: ${baseUri}#/httpPostBindingAuthnRequest
+          description:
+            $ref: ${baseUri}#/httpPostBindingAuthnRequestHelp
+        postBindingLogout:
+          title:
+            $ref: ${baseUri}#/httpPostBindingLogout
+          description:
+            $ref: ${baseUri}#/httpPostBindingLogoutHelp
+        wantAuthnRequestsSigned:
+          title:
+            $ref: ${baseUri}#/wantAuthnRequestsSigned
+          description:
+            $ref: ${baseUri}#/wantAuthnRequestsSignedHelp
+        signatureAlgorithm:
+          title:
+            $ref: ${baseUri}#/signatureAlgorithm
+          description:
+            $ref: ${baseUri}#/signatureAlgorithmHelp
+        encryptionAlgorithm:
+          title:
+            $ref: ${baseUri}#/encryptionAlgorithm
+          description:
+            $ref: ${baseUri}#/encryptionAlgorithmHelp
+        xmlSigKeyInfoKeyNameTransformer:
+          title:
+            $ref: ${baseUri}#/samlSignatureKeyName
+          description:
+            $ref: ${baseUri}#/samlSignatureKeyNameHelp
+        wantAssertionsSigned:
+          title:
+            $ref: ${baseUri}#/wantAssertionsSigned
+          description:
+            $ref: ${baseUri}#/wantAssertionsSignedHelp
+        wantAssertionsEncrypted:
+          title:
+            $ref: ${baseUri}#/wantAssertionsEncrypted
+          description:
+            $ref: ${baseUri}#/wantAssertionsEncryptedHelp
+        forceAuthn:
+          title:
+            $ref: ${baseUri}#/forceAuthentication
+          description:
+            $ref: ${baseUri}#/forceAuthenticationHelp
+        validateSignature:
+          title:
+            $ref: ${baseUri}#/validateSignature
+          description:
+            $ref: ${baseUri}#/validateSignatureHelp
+        signingCertificate:
+          title:
+            $ref: ${baseUri}#/validatingX509Certs
+          description:
+            $ref: ${baseUri}#/validatingX509CertsHelp
+        signSpMetadata:
+          title:
+            $ref: ${baseUri}#/signServiceProviderMetadata
+          description:
+            $ref: ${baseUri}#/signServiceProviderMetadataHelp
+        loginHint:
+          title:
+            $ref: ${baseUri}#/passSubject
+          description:
+            $ref: ${baseUri}#/passSubjectHelp
+        allowedClockSkew:
+          title:
+            $ref: ${baseUri}#/allowedClockSkew
+          description:
+            $ref: ${baseUri}#/allowedClockSkewHelp
+        attributeConsumingServiceIndex:
+          title:
+            $ref: ${baseUri}#/attributeConsumingServiceIndex
+          description:
+            $ref: ${baseUri}#/attributeConsumingServiceIndexHelp
+
+        ## Requested AuthnContext Constraints (SAML)
+        authnContextComparisonType:
+          title:
+            $ref: ${baseUri}#/comparison
+          description:
+            $ref: ${baseUri}#/comparisonHelp
+        authnContextClassRefs:
+          title:
+            $ref: ${baseUri}#/authnContextClassRefs
+          description:
+            $ref: ${baseUri}#/authnContextClassRefsHelp
+        authnContextDeclRefs:
+          title:
+            $ref: ${baseUri}#/authnContextDeclRefs
+          description:
+            $ref: ${baseUri}#/authnContextDeclRefsHelp
+
+        ## Advanced settings (SAML)
+        hideOnLoginPage:
+          title:
+            $ref: ${baseUri}#/hideOnLoginPage
+          description:
+            $ref: ${baseUri}#/hideOnLoginPageHelp
+        syncMode:
+          title:
+            $ref: ${baseUri}#/syncMode
+          description:
+            $ref: ${baseUri}#/syncModeHelp
+    enabled:
+      title:
+        $ref: ${baseUri}#/enabled
+    linkOnly:
+      title:
+        $ref: ${baseUri}#/accountLinkingOnly
+      description:
+        $ref: ${baseUri}#/accountLinkingOnlyHelp
+    firstBrokerLoginFlowAlias:
+      title:
+        $ref: ${baseUri}#/firstBrokerLoginFlowAliasOverride
+      description:
+        $ref: ${baseUri}#/firstBrokerLoginFlowAliasOverrideHelp
+    postBrokerLoginFlowAlias:
+      title:
+        $ref: ${baseUri}#/postBrokerLoginFlowAlias
+      description:
+        $ref: ${baseUri}#/postBrokerLoginFlowAliasHelp
+    storeToken:
+      title:
+        $ref: ${baseUri}#/storeTokens
+      description:
+        $ref: ${baseUri}#/storeTokensHelp
+    addReadTokenRoleOnCreate:
+      title:
+        $ref: ${baseUri}#/storedTokensReadable
+      description:
+        $ref: ${baseUri}#/storedTokensReadableHelp
+    trustEmail:
+      title:
+        $ref: ${baseUri}#/trustEmail
+      description:
+        $ref: ${baseUri}#/trustEmailHelp
+    displayName:
+      title:
+        $ref: ${baseUri}#/displayName
+      description:
+        $ref: ${baseUri}#/displayNameHelp
+
+RealmRepresentation:
+  properties:
+    realm:
+      title:
+        $ref: ${baseUri}#/realmId
+    displayName:
+      title:
+        $ref: ${baseUri}#/displayName
+    displayNameHtml:
+      title:
+        $ref: ${baseUri}#/htmlDisplayName
+    sslRequired:
+      title:
+        $ref: ${baseUri}#/requireSsl
+      description:
+        $ref: ${baseUri}#/requireSslHelp
+    defaultSignatureAlgorithm:
+      title:
+        $ref: ${baseUri}#/defaultSigAlg
+      description:
+        $ref: ${baseUri}#/defaultSigAlgHelp
+    revokeRefreshToken:
+      title:
+        $ref: ${baseUri}#/revokeRefreshToken
+      description:
+        $ref: ${baseUri}#/revokeRefreshTokenHelp
+    refreshTokenMaxReuse:
+      title:
+        $ref: ${baseUri}#/refreshTokenMaxReuse
+      description:
+        $ref: ${baseUri}#/refreshTokenMaxReuseHelp
+    accessTokenLifespan:
+      title:
+        $ref: ${baseUri}#/accessTokenLifespan
+      description:
+        $ref: ${baseUri}#/accessTokenLifespanHelp
+    accessTokenLifespanForImplicitFlow:
+      title:
+        $ref: ${baseUri}#/accessTokenLifespanImplicitFlow
+      description:
+        $ref: ${baseUri}#/accessTokenLifespanImplicitFlowHelp
+    ssoSessionIdleTimeout:
+      title:
+        $ref: ${baseUri}#/SSOSessionIdle
+      description:
+        $ref: ${baseUri}#/ssoSessionIdle
+    ssoSessionMaxLifespan:
+      title:
+        $ref: ${baseUri}#/SSOSessionMax
+      description:
+        $ref: ${baseUri}#/ssoSessionMax
+    ssoSessionMaxLifespanRememberMe:
+      title:
+        $ref: ${baseUri}#/SSOSessionMaxRememberMe
+      description:
+        $ref: ${baseUri}#/ssoSessionMaxRememberMe
+    ssoSessionIdleTimeoutRememberMe:
+      title:
+        $ref: ${baseUri}#/SSOSessionIdleRememberMe
+      description:
+        $ref: ${baseUri}#/ssoSessionIdleRememberMe
+    offlineSessionIdleTimeout:
+      title:
+        $ref: ${baseUri}#/offlineSessionIdle
+      description:
+        $ref: ${baseUri}#/offlineSessionIdleHelp
+    offlineSessionMaxLifespanEnabled:
+      title:
+        $ref: ${baseUri}#/offlineSessionMaxLimited
+      description:
+        $ref: ${baseUri}#/offlineSessionMaxLimitedHelp
+    offlineSessionMaxLifespan:
+      title:
+        $ref: ${baseUri}#/offlineSessionMax
+      description:
+        $ref: ${baseUri}#/offlineSessionMaxHelp
+    clientSessionIdleTimeout:
+      title:
+        $ref: ${baseUri}#/clientSessionIdle
+      description:
+        $ref: ${baseUri}#/clientSessionIdleHelp
+    clientSessionMaxLifespan:
+      title:
+        $ref: ${baseUri}#/clientSessionMax
+      description:
+        $ref: ${baseUri}#/clientSessionMaxHelp
+    accessCodeLifespan:
+      title:
+        $ref: ${baseUri}#/clientLoginTimeout
+      description:
+        $ref: ${baseUri}#/clientLoginTimeoutHelp
+    accessCodeLifespanUserAction:
+      title:
+        $ref: ${baseUri}#/loginActionTimeout
+      description:
+        $ref: ${baseUri}#/loginActionTimeoutHelp
+    accessCodeLifespanLogin:
+      title:
+        $ref: ${baseUri}#/loginTimeout
+      description:
+        $ref: ${baseUri}#/loginTimeoutHelp
+    actionTokenGeneratedByAdminLifespan:
+      title:
+        $ref: ${baseUri}#/defaultAdminInitiated
+      description:
+        $ref: ${baseUri}#/defaultAdminInitiatedActionLifespanHelp
+    actionTokenGeneratedByUserLifespan:
+      title:
+        $ref: ${baseUri}#/userInitiatedActionLifespan
+      description:
+        $ref: ${baseUri}#/userInitiatedActionLifespanHelp
+    registrationAllowed:
+      title:
+        $ref: ${baseUri}#/userRegistration
+      description:
+        $ref: ${baseUri}#/userRegistrationHelpText
+    registrationEmailAsUsername:
+      title:
+        $ref: ${baseUri}#/registrationEmailAsUsername
+      description:
+        $ref: ${baseUri}#/emailAsUsernameHelpText
+    rememberMe:
+      title:
+        $ref: ${baseUri}#/rememberMe
+      description:
+        $ref: ${baseUri}#/rememberMeHelpText
+    verifyEmail:
+      title:
+        $ref: ${baseUri}#/verifyEmail
+      description:
+        $ref: ${baseUri}#/verifyEmailHelpText
+    loginWithEmailAllowed:
+      title:
+        $ref: ${baseUri}#/loginWithEmailAllowed
+      description:
+        $ref: ${baseUri}#/loginWithEmailHelpText
+    duplicateEmailsAllowed:
+      title:
+        $ref: ${baseUri}#/duplicateEmailsAllowed
+      description:
+        $ref: ${baseUri}#/duplicateEmailsHelpText
+    resetPasswordAllowed:
+      title:
+        $ref: ${baseUri}#/forgotPasswordHelp
+      description:
+        $ref: ${baseUri}#/forgotPasswordHelpText
+    editUsernameAllowed:
+      title:
+        $ref: ${baseUri}#/editUsernameAllowed
+      description:
+        $ref: ${baseUri}#/editUsernameHelp
+    browserSecurityHeaders:
+      properties:
+        contentSecurityPolicy:
+          title:
+            $ref: ${baseUri}#/contentSecurityPolicy
+          description:
+            $ref: ${baseUri}#/contentSecurityPolicyHelp
+        contentSecurityPolicyReportOnly:
+          title:
+            $ref: ${baseUri}#/contentSecurityPolicyReportOnly
+          description:
+            $ref: ${baseUri}#/contentSecurityPolicyReportOnlyHelp
+        strictTransportSecurity:
+          title:
+            $ref: ${baseUri}#/strictTransportSecurity
+          description:
+            $ref: ${baseUri}#/strictTransportSecurityHelp
+        xContentTypeOptions:
+          title:
+            $ref: ${baseUri}#/xContentTypeOptions
+          description:
+            $ref: ${baseUri}#/xContentTypeOptionsHelp
+        xFrameOptions:
+          title:
+            $ref: ${baseUri}#/xFrameOptions
+          description:
+            $ref: ${baseUri}#/xFrameOptionsHelp
+        xRobotsTag:
+          title:
+            $ref: ${baseUri}#/xRobotsTag
+          description:
+            $ref: ${baseUri}#/xRobotsTagHelp
+        xXSSProtection:
+          title:
+            $ref: ${baseUri}#/xXSSProtection
+          description:
+            $ref: ${baseUri}#/xXSSProtectionHelp
+    smtpServer:
+      properties:
+        from:
+          title:
+            $ref: ${baseUri}#/from
+        fromDisplayName:
+          title:
+            $ref: ${baseUri}#/fromDisplayName
+          description:
+            $ref: ${baseUri}#/fromDisplayNameHelp
+        replyTo:
+          title:
+            $ref: ${baseUri}#/replyTo
+        replyToDisplayName:
+          title:
+            $ref: ${baseUri}#/replyToDisplayName
+          description:
+            $ref: ${baseUri}#/replyToDisplayNameHelp
+        envelopeFrom:
+          title:
+            $ref: ${baseUri}#/envelopeFrom
+          description:
+            $ref: ${baseUri}#/envelopeFromHelp
+        host:
+          title:
+            $ref: ${baseUri}#/host
+        port:
+          title:
+            $ref: ${baseUri}#/port
+        ssl:
+          title:
+            $ref: ${baseUri}#/enableSSL
+        starttls:
+          title:
+            $ref: ${baseUri}#/enableStartTLS
+        auth:
+          title:
+            $ref: ${baseUri}#/authentication
+        user:
+          title:
+            $ref: ${baseUri}#/username
+        password:
+          title:
+            $ref: ${baseUri}#/password
+          description:
+            $ref: ${baseUri}#/passwordHelp
+    loginTheme:
+      title:
+        $ref: ${baseUri}#/loginTheme
+      description:
+        $ref: ${baseUri}#/loginThemeHelp
+    accountTheme:
+      title:
+        $ref: ${baseUri}#/accountTheme
+      description:
+        $ref: ${baseUri}#/loginThemeHelp
+    adminTheme:
+      title:
+        $ref: ${baseUri}#/adminTheme
+    emailTheme:
+      title:
+        $ref: ${baseUri}#/emailTheme
+      description:
+        $ref: ${baseUri}#/emailThemeHelp
+    bruteForceDetection:
+      title:
+        $ref: ${baseUri}#/bruteForceDetection
+    permanentLockout:
+      title:
+        $ref: ${baseUri}#/permanentLockout
+    maxTemporaryLockouts:
+      title:
+        $ref: ${baseUri}#/maxTemporaryLockouts
+      description:
+        $ref: ${baseUri}#/maxTemporaryLockoutsHelp
+    maxFailureWaitSeconds:
+      title:
+        $ref: ${baseUri}#/maxFailureWaitSeconds
+      description:
+        $ref: ${baseUri}#/maxFailureWaitSecondsHelp
+    minimumQuickLoginWaitSeconds:
+      title:
+        $ref: ${baseUri}#/minimumQuickLoginWaitSeconds
+      description:
+        $ref: ${baseUri}#/minimumQuickLoginWaitSecondsHelp
+    waitIncrementSeconds:
+      title:
+        $ref: ${baseUri}#/waitIncrementSeconds
+      description:
+        $ref: ${baseUri}#/waitIncrementSecondsHelp
+    quickLoginCheckMilliSeconds:
+      title:
+        $ref: ${baseUri}#/quickLoginCheckMilliSeconds
+      description:
+        $ref: ${baseUri}#/quickLoginCheckMilliSecondsHelp
+    maxDeltaTimeSeconds:
+      title:
+        $ref: ${baseUri}#/maxDeltaTimeSeconds
+      description:
+        $ref: ${baseUri}#/maxDeltaTimeSecondsHelp
+    failureFactor:
+      title:
+        $ref: ${baseUri}#/failureFactor
+      description:
+        $ref: ${baseUri}#/failureFactor
+    eventsEnabled:
+      title:
+        $ref: ${baseUri}#/saveEvents
+      description:
+        $ref: ${baseUri}#/save-user-eventsHelp
+    eventsExpiration:
+      title:
+        $ref: ${baseUri}#/expiration
+      description:
+        $ref: ${baseUri}#/expirationHelp
+    eventsListeners:
+      title:
+        $ref: ${baseUri}#/eventListeners
+      description:
+        $ref: ${baseUri}#/eventListenersHelpTextHelp
+    adminEventsEnabled:
+      title:
+        $ref: ${baseUri}#/saveEvents
+      description:
+        $ref: ${baseUri}#/save-admin-eventsHelp
+    adminEventsDetailsEnabled:
+      title:
+        $ref: ${baseUri}#/includeRepresentation
+      description:
+        $ref: ${baseUri}#/includeRepresentationHelp
+    internationalizationEnabled:
+      title:
+        $ref: ${baseUri}#/internationalization
+      description:
+        $ref: ${baseUri}#/internationalizationHelp
+    supportedLocales:
+      title:
+        $ref: ${baseUri}#/supportedLocales
+    defaultLocale:
+      title:
+        $ref: ${baseUri}#/defaultLocale
+    otpPolicyType:
+      title:
+        $ref: ${baseUri}#/otpType
+      description:
+        $ref: ${baseUri}#/otpTypeHelp
+    otpPolicyAlgorithm:
+      title:
+        $ref: ${baseUri}#/otpHashAlgorithm
+      description:
+        $ref: ${baseUri}#/otpHashAlgorithmHelp
+    otpPolicyInitialCounter:
+      title:
+        $ref: ${baseUri}#/initialCounter
+    otpPolicyDigits:
+      title:
+        $ref: ${baseUri}#/otpPolicyDigits
+      description:
+        $ref: ${baseUri}#/otpPolicyDigitsHelp
+    otpPolicyLookAheadWindow:
+      title:
+        $ref: ${baseUri}#/lookAround
+      description:
+        $ref: ${baseUri}#/lookAroundHelp
+    otpPolicyPeriod:
+      title:
+        $ref: ${baseUri}#/otpPolicyPeriod
+      description:
+        $ref: ${baseUri}#/otpPolicyPeriodHelp
+    otpPolicyCodeReusable:
+      title:
+        $ref: ${baseUri}#/otpPolicyCodeReusable
+      description:
+        $ref: ${baseUri}#/otpPolicyCodeReusableHelp
+    webAuthnPolicyRpEntityName:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyRpEntityName
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyRpEntityNameHelp
+    webAuthnPolicySignatureAlgorithms:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicySignatureAlgorithms
+      description:
+        $ref: ${baseUri}#/webAuthnPolicySignatureAlgorithmsHelp
+    webAuthnPolicyRpId:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyRpId
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyRpIdHelp
+    webAuthnPolicyAttestationConveyancePreference:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAttestationConveyancePreference
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAttestationConveyancePreferenceHelp
+    webAuthnPolicyAuthenticatorAttachment:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAuthenticatorAttachment
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAuthenticatorAttachmentHelp
+    webAuthnPolicyRequireResidentKey:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyRequireResidentKey
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyRequireResidentKeyHelp
+    webAuthnPolicyUserVerificationRequirement:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyUserVerificationRequirement
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyUserVerificationRequirementHelp
+    webAuthnPolicyCreateTimeout:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyCreateTimeout
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyCreateTimeoutHelp
+    webAuthnPolicyAvoidSameAuthenticatorRegister:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAvoidSameAuthenticatorRegister
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAvoidSameAuthenticatorRegisterHelp
+    webAuthnPolicyAcceptableAaguids:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAcceptableAaguids
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAcceptableAaguidsHelp
+    webAuthnPolicyPasswordlessRpEntityName:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyRpEntityName
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyRpEntityNameHelp
+    webAuthnPolicyPasswordlessSignatureAlgorithms:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicySignatureAlgorithms
+      description:
+        $ref: ${baseUri}#/webAuthnPolicySignatureAlgorithmsHelp
+    webAuthnPolicyPasswordlessRpId:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyRpId
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyRpIdHelp
+    webAuthnPolicyPasswordlessAttestationConveyancePreference:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAttestationConveyancePreference
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAttestationConveyancePreferenceHelp
+    webAuthnPolicyPasswordlessAuthenticatorAttachment:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAuthenticatorAttachment
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAuthenticatorAttachmentHelp
+    webAuthnPolicyPasswordlessRequireResidentKey:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyRequireResidentKey
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyRequireResidentKeyHelp
+    webAuthnPolicyPasswordlessUserVerificationRequirement:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyUserVerificationRequirement
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyUserVerificationRequirementHelp
+    webAuthnPolicyPasswordlessCreateTimeout:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyCreateTimeout
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyCreateTimeoutHelp
+    webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAvoidSameAuthenticatorRegister
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAvoidSameAuthenticatorRegisterHelp
+    webAuthnPolicyPasswordlessAcceptableAaguids:
+      title:
+        $ref: ${baseUri}#/webAuthnPolicyAcceptableAaguids
+      description:
+        $ref: ${baseUri}#/webAuthnPolicyAcceptableAaguidsHelp
+    userManagedAccessAllowed:
+      title:
+        $ref: ${baseUri}#/userManagedAccess
+      description:
+        $ref: ${baseUri}#/userManagedAccessHelp
+    oauth2DeviceCodeLifespan:
+      title:
+        $ref: ${baseUri}#/oAuthDeviceCodeLifespan
+      description:
+        $ref: ${baseUri}#/oAuthDeviceCodeLifespanHelp
+    oauth2DevicePollingInterval:
+      title:
+        $ref: ${baseUri}#/oAuthDevicePollingInterval
+      description:
+        $ref: ${baseUri}#/oAuthDevicePollingIntervalHelp
+    attributes:
+      properties:
+        adminEventsExpiration:
+          title:
+            $ref: ${baseUri}#/expiration
+          description:
+            $ref: ${baseUri}#/expirationHelp
+        cibaAuthRequestedUserHint:
+          title:
+            $ref: ${baseUri}#/cibaAuthRequestedUserHint
+          description:
+            $ref: ${baseUri}#/cibaAuthRequestedUserHintHelp
+        cibaBackchannelTokenDeliveryMode:
+          title:
+            $ref: ${baseUri}#/cibaBackchannelTokenDeliveryMode
+          description:
+            $ref: ${baseUri}#/cibaBackchannelTokenDeliveryModeHelp
+        cibaExpiresIn:
+          title:
+            $ref: ${baseUri}#/cibaExpiresIn
+          description:
+            $ref: ${baseUri}#/cibaExpiresInHelp
+        cibaInterval:
+          title:
+            $ref: ${baseUri}#/cibaInterval
+          description:
+            $ref: ${baseUri}#/cibaIntervalHelp
+        frontendUrl:
+          title:
+            $ref: ${baseUri}#/frontendUrl
+          description:
+            $ref: ${baseUri}#/frontendUrlHelp
