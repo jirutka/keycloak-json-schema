@@ -793,6 +793,11 @@ RealmRepresentation:
     permanentLockout:
       title:
         $ref: ${baseUri}#/permanentLockout
+    maxTemporaryLockouts:
+      title:
+        $ref: ${baseUri}#/maxTemporaryLockouts
+      description:
+        $ref: ${baseUri}#/maxTemporaryLockoutsHelp
     maxFailureWaitSeconds:
       title:
         $ref: ${baseUri}#/maxFailureWaitSeconds
