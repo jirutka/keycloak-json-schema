@@ -44,10 +44,9 @@ jobs:
           ./bin/convert --only-realm-export $srcdir/keycloak-23.0.0.json patches/v21+/*.yml patches/v23/*.yml \
               > public/keycloak-realm-23.0.0.json
 
-          curl -L https://www.keycloak.org/docs-api/24.0.5/rest-api/openapi.json > keycloak-24.json
-          ./bin/convert keycloak-24.json patches/v21+/*.yml patches/v24/*.yml \
+          ./bin/convert openapi/keycloak-24.0.5.json patches/v21+/*.yml patches/v24/*.yml \
               > public/keycloak-all-24.0.5.json
-          ./bin/convert --only-realm-export keycloak-24.json patches/v21+/*.yml patches/v24/*.yml \
+          ./bin/convert --only-realm-export openapi/keycloak-24.0.5.json patches/v21+/*.yml patches/v24/*.yml \
               > public/keycloak-realm-24.0.5.json
 
       - name: Validate JSON schemas
