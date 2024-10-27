@@ -1,7 +1,7 @@
 # JSON Merge Patch with schema title and description parameters as references
 # to the Keycloak Admin UI messages bundle.
 
-$baseUri: https://raw.githubusercontent.com/keycloak/keycloak/24.0.3/js/apps/admin-ui/maven-resources/theme/keycloak.v2/admin/messages/messages_en.properties
+$baseUri: https://raw.githubusercontent.com/keycloak/keycloak/24.0.5/js/apps/admin-ui/maven-resources/theme/keycloak.v2/admin/messages/messages_en.properties
 
 ClientRepresentation:
   properties:
