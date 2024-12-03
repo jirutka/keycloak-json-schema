@@ -1,0 +1,14 @@
+# JSON Merge Patch to refine types of some properties.
+
+ClientPolicyConditionRepresentation:
+  properties:
+    configuration:
+      # https://github.com/keycloak/keycloak/issues/32004
+      type: object
+
+# See https://github.com/keycloak/keycloak/issues/32004
+ClientPolicyExecutorRepresentation:
+  properties:
+    configuration:
+      # https://github.com/keycloak/keycloak/issues/32004
+      type: object
