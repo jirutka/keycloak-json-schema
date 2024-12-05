@@ -111,6 +111,11 @@ ClientRepresentation:
         $ref: ${baseUri}#/fullScopeAllowed
       description:
         $ref: ${baseUri}#/fullScopeAllowedHelp
+    nodeReRegistrationTimeout:
+      title:
+        $ref: ${baseUri}#/nodeReRegistrationTimeout
+      description:
+        $ref: ${baseUri}#/nodeReRegistrationTimeoutHelp
     protocol:
       title:
         $ref: ${baseUri}#/protocol
