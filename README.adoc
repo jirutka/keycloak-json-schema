@@ -1,8 +1,7 @@
 = JSON schemas for Keycloak
 
-https://www.keycloak.org[Keycloak] does not provide a JSON schema for the realm export format.
-Fortunately, https://github.com/DAHAG-ArisNourbakhsh[Aris Nourbakhsh (DAHAG AG)] has written a tool https://github.com/dahag-ag/keycloak-openapi[keycloak-openapi] that scrapes the Keycloak source code to generate an OpenAPI definition.
-It’s not perfect, there are a few bugs in the model definitions, but they’re link:patches/fix-kc-openapi-bugs.yml[easy to fix].
-This project fixes the model definitions and converts them into a modular JSON schema that you can use directly to validate a realm export.
+This project provides JSON schemas for the Keycloak realm export format.
+The schemas are extracted from the https://www.keycloak.org/docs-api/latest/rest-api/index.html#_openapi_definitions[OpenAPI definitions], corrected, extended and enriched with titles and descriptions extracted from the Admin UI message bundle (see link:patches/[]).
+The aim is to use this schema to validate a realm export.
 
 You can find the JSON schemas in https://jirutka.github.io/keycloak-json-schema/.
