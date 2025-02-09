@@ -808,6 +808,11 @@ RealmRepresentation:
         $ref: ${baseUri}#/maxTemporaryLockouts
       description:
         $ref: ${baseUri}#/maxTemporaryLockoutsHelp
+    bruteForceStrategy:
+      title:
+        $ref: ${baseUri}#/bruteForceStrategy
+      description:
+        $ref: ${baseUri}#/bruteForceStrategyHelp
     maxFailureWaitSeconds:
       title:
         $ref: ${baseUri}#/maxFailureWaitSeconds
