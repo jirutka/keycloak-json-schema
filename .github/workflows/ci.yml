@@ -44,10 +44,17 @@ jobs:
           ./bin/convert --only-realm-export $srcdir/keycloak-23.0.0.json patches/v21+/*.yml patches/v23/*.yml \
               > public/keycloak-realm-23.0.0.json
 
-          for ver in 24.0.5 25.0.6 26.0.2 26.1.1; do
+          for ver in 24.0.5 25.0.6; do
             ./bin/convert openapi/keycloak-$ver.json patches/v21+/*.yml patches/v${ver%%.*}/*.yml \
                 > public/keycloak-all-$ver.json
             ./bin/convert --only-realm-export openapi/keycloak-$ver.json patches/v21+/*.yml patches/v${ver%%.*}/*.yml \
+                > public/keycloak-realm-$ver.json
+          done
+
+          for ver in 26.0.2 26.1.1; do
+            ./bin/convert openapi/keycloak-$ver.json patches/v21+/*.yml patches/v26+/*.yml patches/v${ver%%.*}/*.yml \
+                > public/keycloak-all-$ver.json
+            ./bin/convert --only-realm-export openapi/keycloak-$ver.json patches/v21+/*.yml patches/v26+/*.yml patches/v${ver%%.*}/*.yml \
                 > public/keycloak-realm-$ver.json
           done
 

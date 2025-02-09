@@ -1,0 +1,13 @@
+# JSON Merge Patch to refine types of some properties.
+
+IdentityProviderRepresentation:
+  properties:
+    config:
+      properties:
+        ## SAML settings
+        principalType:
+          type: string
+          enum:
+            - SUBJECT
+            - ATTRIBUTE
+            - FRIENDLY_ATTRIBUTE
