@@ -34,6 +34,13 @@ jobs:
       - name: Validate JSON schemas
         run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'schemas/*.json'
 
+      - name: Duplicate schemas without minor and patch version
+        run: |
+          for filename in *.json; do
+            cp "$filename" "${filename%%.*}.json"
+          done
+        working-directory: schemas
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
