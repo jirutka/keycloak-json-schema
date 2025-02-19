@@ -162,21 +162,6 @@ async function main (argv) {
     return acc
   }, {})
 
-  // Fix unhandled inheritance (<23.0.0).
-  // https://github.com/dahag-ag/keycloak-openapi/issues/7
-  if ('AbstractAuthenticationExecutionRepresentation' in defs) {
-    Object.assign(
-      defs.AuthenticationExecutionExportRepresentation.properties,
-      defs.AbstractAuthenticationExecutionRepresentation.properties,
-    )
-  }
-  if ('AbstractPolicyRepresentation' in defs) {
-    Object.assign(
-      defs.PolicyRepresentation.properties,
-      defs.AbstractPolicyRepresentation.properties,
-    )
-  }
-
   for (const patchFile of argv.slice(1)) {
     defs = await applyMergePatch(defs, patchFile)
   }
@@ -193,10 +178,6 @@ async function main (argv) {
     }
     if (obj.type === 'object' && 'properties' in obj) {
       obj.additionalProperties ??= false
-    }
-    if (obj.type === 'string' && Array.isArray(obj['enum'])) {
-      // https://github.com/dahag-ag/keycloak-openapi/issues/4 (it's not fixed in older specs)
-      obj['enum'] = obj['enum'].map(item => item.replace(/\(\d\)$/, ''))
     }
   })
 

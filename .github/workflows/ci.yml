@@ -10,62 +10,35 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Checkout dahag-ag/keycloak-openapi
-        uses: actions/checkout@v4
-        with:
-          repository: dahag-ag/keycloak-openapi
-          path: keycloak-openapi
-
       - name: Install npm dependencies
         run: npm ci
 
       - name: Convert OpenAPI definitions to JSON schemas
         run: |
-          srcdir=keycloak-openapi/OpenApiDefinitions
-          mkdir -p public
-
-          for ver in 17.0.1 18.0.0 19.0.0 20.0.0; do
-              ./bin/convert $srcdir/keycloak-$ver.json patches/*.yml > public/keycloak-all-$ver.json
-              ./bin/convert --only-realm-export $srcdir/keycloak-$ver.json patches/*.yml > public/keycloak-realm-$ver.json
-          done
-
-          ./bin/convert $srcdir/keycloak-21.0.0.json patches/*.yml patches/v21+/*.yml \
-              > public/keycloak-all-21.0.0.json
-          ./bin/convert --only-realm-export $srcdir/keycloak-21.0.0.json patches/*.yml patches/v21+/*.yml \
-              > public/keycloak-realm-21.0.0.json
-
-          ./bin/convert $srcdir/keycloak-22.0.1.json patches/*.yml patches/v21+/*.yml patches/v22/*.yml \
-              > public/keycloak-all-22.0.1.json
-          ./bin/convert --only-realm-export $srcdir/keycloak-22.0.1.json patches/*.yml patches/v21+/*.yml patches/v22/*.yml \
-              > public/keycloak-realm-22.0.1.json
-
-          ./bin/convert $srcdir/keycloak-23.0.0.json patches/v21+/*.yml patches/v23/*.yml \
-              > public/keycloak-all-23.0.0.json
-          ./bin/convert --only-realm-export $srcdir/keycloak-23.0.0.json patches/v21+/*.yml patches/v23/*.yml \
-              > public/keycloak-realm-23.0.0.json
+          mkdir -p schemas
 
           for ver in 24.0.5 25.0.6; do
             ./bin/convert openapi/keycloak-$ver.json patches/v21+/*.yml patches/v${ver%%.*}/*.yml \
-                > public/keycloak-all-$ver.json
+                > schemas/keycloak-all-$ver.json
             ./bin/convert --only-realm-export openapi/keycloak-$ver.json patches/v21+/*.yml patches/v${ver%%.*}/*.yml \
-                > public/keycloak-realm-$ver.json
+                > schemas/keycloak-realm-$ver.json
           done
 
           for ver in 26.0.2 26.1.1; do
             ./bin/convert openapi/keycloak-$ver.json patches/v21+/*.yml patches/v26+/*.yml patches/v${ver%%.*}/*.yml \
-                > public/keycloak-all-$ver.json
+                > schemas/keycloak-all-$ver.json
             ./bin/convert --only-realm-export openapi/keycloak-$ver.json patches/v21+/*.yml patches/v26+/*.yml patches/v${ver%%.*}/*.yml \
-                > public/keycloak-realm-$ver.json
+                > schemas/keycloak-realm-$ver.json
           done
 
       - name: Validate JSON schemas
-        run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'public/*.json'
+        run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'schemas/*.json'
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: schemas
-          path: ./public
+          path: ./schemas
 
   deploy:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
