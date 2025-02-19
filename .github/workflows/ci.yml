@@ -61,27 +61,56 @@ jobs:
       - name: Validate JSON schemas
         run: ./node_modules/.bin/ajv validate --strict=true -s meta-schema.json -d 'public/*.json'
 
-      - name: Generate directory listings
-        uses: jayanta525/github-pages-directory-listing@20409ce0808d816bcbc3090ed7a6a784cf6ed9df
-        with:
-          FOLDER: public
-
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          name: schemas
           path: ./public
 
   deploy:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     needs: build
-    permissions:
-      pages: write  # to deploy to Pages
-      id-token: write  # to verify the deployment originates from an appropriate source
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Download and unpack artifact
+        uses: actions/download-artifact@v4
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Copy generated files to gh-pages
+        run: cp schemas/* gh-pages/
+
+      - name: Check if there are any changes
+        id: has_changes
+        working-directory: gh-pages
+        run: |
+          git status || exit 1
+          test -n "$(git status --porcelain)" && result=yes || result=no
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Generate directory listings
+        if: steps.has_changes.outputs.result == 'yes'
+        uses: jayanta525/github-pages-directory-listing@v4.0.0
+        with:
+          FOLDER: gh-pages
+
+      - name: Commit changes
+        if: steps.has_changes.outputs.result == 'yes'
+        working-directory: gh-pages
+        run: |
+          git config --local user.email "github-actions@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add --all
+          git commit -m "Built from ${{ github.sha }}"
+
+      - name: Push changes back to origin
+        if: steps.has_changes.outputs.result == 'yes'
+        working-directory: gh-pages
+        run: |
+          # XXX: workaround for https://github.com/orgs/community/discussions/55820
+          git config --global http.version HTTP/1.1
+          git push https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git gh-pages
