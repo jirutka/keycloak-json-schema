@@ -72,6 +72,11 @@ jobs:
           test -n "$(git status --porcelain)" && result=yes || result=no
           echo "result=$result" >> "$GITHUB_OUTPUT"
 
+      - name: Remove existing index.html
+        if: steps.has_changes.outputs.result == 'yes'
+        run: rm -f index.html
+        working-directory: gh-pages
+
       - name: Generate directory listings
         if: steps.has_changes.outputs.result == 'yes'
         uses: jayanta525/github-pages-directory-listing@v4.0.0
