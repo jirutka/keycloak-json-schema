@@ -241,6 +241,21 @@ RealmRepresentation:
           type: string
         xXSSProtection:
           type: string
+    defaultSignatureAlgorithm:
+      enum:
+        - EdDSA
+        - ES256
+        - ES384
+        - ES512
+        - HS256
+        - HS384
+        - HS512
+        - PS256
+        - PS384
+        - PS512
+        - RS256
+        - RS384
+        - RS512
     otpPolicyType:
       type: string
       enum:
@@ -277,6 +292,17 @@ RealmRepresentation:
         - all
         - external
         - none
+    webAuthnPolicySignatureAlgorithms: &webAuthnSignAlgs
+      items:
+        enum:
+          - Ed25519
+          - ES256
+          - ES384
+          - ES512
+          - RS256
+          - RS384
+          - RS512
+          - RS1
     webAuthnPolicyAttestationConveyancePreference:
       type: string
       enum:
@@ -303,6 +329,7 @@ RealmRepresentation:
         - required
         - preferred
         - discouraged
+    webAuthnPolicyPasswordlessSignatureAlgorithms: *webAuthnSignAlgs
     webAuthnPolicyPasswordlessAttestationConveyancePreference:
       type: string
       enum:
