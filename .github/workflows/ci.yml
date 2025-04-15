@@ -24,7 +24,7 @@ jobs:
                 > schemas/keycloak-realm-$ver.json
           done
 
-          for ver in 26.0.2 26.1.1; do
+          for ver in 26.0.2 26.1.1 26.2.0; do
             ./bin/convert openapi/keycloak-$ver.json patches/v24+/*.yml patches/v26+/*.yml patches/v${ver%%.*}/*.yml \
                 > schemas/keycloak-all-$ver.json
             ./bin/convert --only-realm-export openapi/keycloak-$ver.json patches/v24+/*.yml patches/v26+/*.yml patches/v${ver%%.*}/*.yml \
