@@ -321,6 +321,41 @@ ClientRepresentation:
       description:
         $ref: ${baseUri}#/frontchannelLogoutHelp
 
+ClientScopeRepresentation:
+  properties:
+    name:
+      title:
+        $ref: ${baseUri}#/name
+      description:
+        $ref: ${baseUri}#/scopeNameHelp
+    description:
+      title:
+        $ref: ${baseUri}#/description
+      description:
+        $ref: ${baseUri}#/scopeDescriptionHelp
+    attributes:
+      properties:
+        consent.screen.text:
+          title:
+            $ref: ${baseUri}#/consentScreenText
+          description:
+            $ref: ${baseUri}#/consentScreenTextHelp
+        display.on.consent.screen:
+          title:
+            $ref: ${baseUri}#/displayOnConsentScreen
+          description:
+            $ref: ${baseUri}#/displayOnConsentScreenHelp
+        gui.order:
+          title:
+            $ref: ${baseUri}#/guiOrder
+          description:
+            $ref: ${baseUri}#/guiOrderHelp
+        include.in.token.scope:
+          title:
+            $ref: ${baseUri}#/includeInTokenScope
+          description:
+            $ref: ${baseUri}#/includeInTokenScopeHelp
+
 IdentityProviderMapperRepresentation:
   properties:
     name:

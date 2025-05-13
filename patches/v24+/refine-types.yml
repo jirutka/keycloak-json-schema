@@ -107,6 +107,12 @@ ClientRepresentation:
 
 ClientScopeRepresentation:
   properties:
+    attributes:
+      consent.screen.text:
+        type: string
+      display.on.consent.screen: *string-bool
+      gui.order: *string-uint
+      include.in.token.scope: *string-bool
     protocol:
       type: string
       enum:
