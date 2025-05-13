@@ -1,5 +1,17 @@
 # JSON Merge Patch to refine types of some properties.
 
+ClientRepresentation:
+  properties:
+    attributes:
+      properties:
+        ## Settings
+        frontchannel.logout.session.required:
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - ""
+
 IdentityProviderRepresentation:
   properties:
     config:

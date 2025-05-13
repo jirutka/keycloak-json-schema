@@ -122,6 +122,11 @@ ClientRepresentation:
     attributes:
       properties:
         ## Settings
+        frontchannel.logout.session.required:
+          title:
+            $ref: ${baseUri}#/frontchannelLogoutSessionRequired
+          description:
+            $ref: ${baseUri}#/frontchannelLogoutSessionRequired
         post.logout.redirect.uris:
           title:
             $ref: ${baseUri}#/validPostLogoutRedirectUri
