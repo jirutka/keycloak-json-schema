@@ -12,6 +12,18 @@ AuthenticationExecutionExportRepresentation:
 
 ProtocolMapperRepresentation:
   properties:
+    config:
+      # NOTE: This is incomplete.
+      properties:
+        access.token.claim: &string-bool
+          type: string
+          enum:
+            - "true"
+            - "false"
+            - ""
+        id.token.claim: *string-bool
+        introspection.token.claim: *string-bool
+        userinfo.token.claim: *string-bool
     protocol:
       type: string
       enum:
@@ -34,12 +46,7 @@ ClientRepresentation:
         ## Credentials
         token.endpoint.auth.signing.alg:
           type: string
-        x509.allow.regex.pattern.comparison: &string-bool
-          type: string
-          enum:
-            - "true"
-            - "false"
-            - ""
+        x509.allow.regex.pattern.comparison: *string-bool
         x509.subjectdn:
           type: string
         ## Advanced

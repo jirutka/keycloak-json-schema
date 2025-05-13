@@ -585,6 +585,31 @@ IdentityProviderRepresentation:
       description:
         $ref: ${baseUri}#/displayNameHelp
 
+ProtocolMapperRepresentation:
+  properties:
+    config:
+      properties:
+        access.token.claim:
+          title:
+            $ref: ${baseUri}#/includeInAccessToken.label
+          description:
+            $ref: ${baseUri}#/includeInAccessToken.tooltip
+        id.token.claim:
+          title:
+            $ref: ${baseUri}#/includeInIdToken.label
+          description:
+            $ref: ${baseUri}#/includeInIdToken.tooltip
+        introspection.token.claim:
+          title:
+            $ref: ${baseUri}#/includeInIntrospection.label
+          description:
+            $ref: ${baseUri}#/includeInIntrospection.tooltip
+        userinfo.token.claim:
+          title:
+            $ref: ${baseUri}#/includeInUserInfo.label
+          description:
+            $ref: ${baseUri}#/includeInUserInfo.tooltip
+
 RealmRepresentation:
   properties:
     realm:
