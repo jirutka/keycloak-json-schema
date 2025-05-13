@@ -1851,6 +1851,162 @@
               ],
               "title": "Pushed authorization request required",
               "description": "Boolean parameter indicating whether the authorization server accepts authorization request data only via the pushed authorization request method."
+            },
+            "saml_idp_initiated_sso_url_name": {
+              "type": "string"
+            },
+            "saml_idp_initiated_sso_relay_state": {
+              "type": "string"
+            },
+            "saml_name_id_format": {
+              "type": "string"
+            },
+            "saml_force_name_id_format": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.force.post.binding": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.artifact.binding": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.authnstatement": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.onetimeuse.condition": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.server.signature.keyinfo.ext": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.allow.ecp.flow": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.server.signature": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.assertion.signature": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.signature.algorithm": {
+              "type": "string",
+              "enum": [
+                "RSA_SHA1",
+                "RSA_SHA256",
+                "RSA_SHA256_MGF1",
+                "RSA_SHA512",
+                "RSA_SHA512_MGF1",
+                "DSA_SHA1"
+              ]
+            },
+            "saml.server.signature.keyinfo.xmlSigKeyInfoKeyNameTransformer": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "KEY_ID",
+                "CERT_SUBJECT"
+              ]
+            },
+            "saml_signature_canonicalization_method": {
+              "type": "string"
+            },
+            "saml.client.signature": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml.signing.certificate": {
+              "type": "string"
+            },
+            "saml.signing.private.key": {
+              "type": "string"
+            },
+            "saml.encrypt": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "saml_assertion_consumer_url_post": {
+              "type": "string"
+            },
+            "saml_assertion_consumer_url_redirect": {
+              "type": "string"
+            },
+            "saml_single_logout_service_url_post": {
+              "type": "string"
+            },
+            "saml_single_logout_service_url_redirect": {
+              "type": "string"
+            },
+            "saml_single_logout_service_url_soap": {
+              "type": "string"
+            },
+            "saml_single_logout_service_url_artifact": {
+              "type": "string"
+            },
+            "saml_artifact_binding_url": {
+              "type": "string"
+            },
+            "saml_artifact_resolution_service_url": {
+              "type": "string"
+            },
+            "saml.artifact.binding.identifier": {
+              "type": "string"
+            },
+            "saml.assertion.lifespan": {
+              "type": "string",
+              "pattern": "^[0-9]*$"
             }
           }
         },
@@ -3011,6 +3167,40 @@
           "type": "object",
           "additionalProperties": {
             "type": "string"
+          },
+          "properties": {
+            "access.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "id.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "introspection.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            },
+            "userinfo.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ]
+            }
           }
         }
       },

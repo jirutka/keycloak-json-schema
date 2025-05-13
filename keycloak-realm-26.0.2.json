@@ -1856,6 +1856,214 @@
               "title": "Pushed authorization request required",
               "description": "Boolean parameter indicating whether the authorization server accepts authorization request data only via the pushed authorization request method."
             },
+            "saml_idp_initiated_sso_url_name": {
+              "type": "string",
+              "title": "IDP-Initiated SSO URL name",
+              "description": "URL fragment name to reference client when you want to do IDP Initiated SSO. Leaving this empty will disable IDP Initiated SSO. The URL you will reference from your browser will be: {server-root}/realms/{realm}/protocol/saml/clients/{client-url-name}."
+            },
+            "saml_idp_initiated_sso_relay_state": {
+              "type": "string",
+              "title": "IDP Initiated SSO Relay State",
+              "description": "Relay state you want to send with SAML request when you want to do IDP Initiated SSO."
+            },
+            "saml_name_id_format": {
+              "type": "string",
+              "title": "Name ID format",
+              "description": "The name ID format to use for the subject."
+            },
+            "saml_force_name_id_format": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Force name ID format",
+              "description": "Ignore requested NameID subject format and use Admin UI configured one."
+            },
+            "saml.force.post.binding": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Force POST binding",
+              "description": "Always use POST binding for responses."
+            },
+            "saml.artifact.binding": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Force artifact binding",
+              "description": "Should response messages be returned to the client through the SAML ARTIFACT binding system?"
+            },
+            "saml.authnstatement": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Include AuthnStatement",
+              "description": "Should a statement specifying the method and timestamp be included in login responses?"
+            },
+            "saml.onetimeuse.condition": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Include OneTimeUse Condition",
+              "description": "Should a OneTimeUse Condition be included in login responses?"
+            },
+            "saml.server.signature.keyinfo.ext": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Optimize REDIRECT signing key lookup",
+              "description": "When signing SAML documents in REDIRECT binding for SP that is secured by Keycloak adapter, should the ID of the signing key be included in SAML protocol message in <Extensions> element? This optimizes validation of the signature as the validating party uses a single key instead of trying every known key for validation."
+            },
+            "saml.allow.ecp.flow": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Allow ECP flow",
+              "description": "This client is allowed to use ECP flow for authenticating users."
+            },
+            "saml.server.signature": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Sign documents",
+              "description": "Should SAML documents be signed by the realm?"
+            },
+            "saml.assertion.signature": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Sign assertions",
+              "description": "Should assertions inside SAML documents be signed? This setting is not needed if document is already being signed."
+            },
+            "saml.signature.algorithm": {
+              "type": "string",
+              "enum": [
+                "RSA_SHA1",
+                "RSA_SHA256",
+                "RSA_SHA256_MGF1",
+                "RSA_SHA512",
+                "RSA_SHA512_MGF1",
+                "DSA_SHA1"
+              ],
+              "title": "Signature algorithm",
+              "description": "The signature algorithm to use to sign documents. Note that 'SHA1' based algorithms are deprecated and can be removed in the future. It is recommended to stick to some more secure algorithm instead of '*_SHA1'."
+            },
+            "saml.server.signature.keyinfo.xmlSigKeyInfoKeyNameTransformer": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "KEY_ID",
+                "CERT_SUBJECT"
+              ],
+              "title": "SAML signature key name",
+              "description": "Signed SAML documents contain identification of signing key in KeyName element. For Keycloak / RH-SSO counter-party, use KEY_ID, for MS AD FS use CERT_SUBJECT, for others check and use NONE if no other option works."
+            },
+            "saml_signature_canonicalization_method": {
+              "type": "string",
+              "title": "Canonicalization method",
+              "description": "Canonicalization Method for XML signatures."
+            },
+            "saml.client.signature": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Client signature required",
+              "description": "Will the client sign their saml requests and responses? And should they be validated?"
+            },
+            "saml.signing.certificate": {
+              "type": "string"
+            },
+            "saml.signing.private.key": {
+              "type": "string"
+            },
+            "saml.encrypt": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Encrypt assertions",
+              "description": "Should SAML assertions be encrypted with client's public key using AES?"
+            },
+            "saml_assertion_consumer_url_post": {
+              "type": "string",
+              "title": "Assertion Consumer Service POST Binding URL",
+              "description": "SAML POST Binding URL for the client's assertion consumer service (login responses). You can leave this blank if you do not have a URL for this binding."
+            },
+            "saml_assertion_consumer_url_redirect": {
+              "type": "string",
+              "title": "Assertion Consumer Service Redirect Binding URL",
+              "description": "SAML Redirect Binding URL for the client's assertion consumer service (login responses). You can leave this blank if you do not have a URL for this binding."
+            },
+            "saml_single_logout_service_url_post": {
+              "type": "string",
+              "title": "Logout Service POST Binding URL",
+              "description": "SAML POST Binding URL for the client's single logout service. You can leave this blank if you are using a different binding."
+            },
+            "saml_single_logout_service_url_redirect": {
+              "type": "string",
+              "title": "Logout Service Redirect Binding URL",
+              "description": "SAML Redirect Binding URL for the client's single logout service. You can leave this blank if you are using a different binding."
+            },
+            "saml_single_logout_service_url_soap": {
+              "type": "string",
+              "title": "Logout Service SOAP Binding URL",
+              "description": "SAML SOAP Binding URL for the client's single logout service. You can leave this blank if you are using a different binding."
+            },
+            "saml_single_logout_service_url_artifact": {
+              "type": "string",
+              "title": "Logout Service ARTIFACT Binding URL",
+              "description": "SAML ARTIFACT Binding URL for the client's single logout service. You can leave this blank if you are using a different binding."
+            },
+            "saml_artifact_binding_url": {
+              "type": "string",
+              "title": "Artifact Binding URL",
+              "description": "URL to send the HTTP ARTIFACT messages to. You can leave this blank if you are using a different binding. This value should be set when forcing ARTIFACT binding together with IdP initiated login."
+            },
+            "saml_artifact_resolution_service_url": {
+              "type": "string",
+              "title": "Artifact Resolution Service",
+              "description": "SAML Artifact resolution service for the client. This is the endpoint to which Keycloak will send a SOAP ArtifactResolve message. You can leave this blank if you do not have a URL for this binding."
+            },
+            "saml.artifact.binding.identifier": {
+              "type": "string"
+            },
+            "saml.assertion.lifespan": {
+              "type": "string",
+              "pattern": "^[0-9]*$",
+              "title": "Assertion Lifespan",
+              "description": "Lifespan set in the SAML assertion conditions. After that time the assertion will be invalid. The \"SessionNotOnOrAfter\" attribute is not modified and continue using the \"SSO Session Max\" time defined at realm level."
+            },
             "frontchannel.logout.session.required": {
               "type": "string",
               "enum": [
@@ -3210,6 +3418,48 @@
           "type": "object",
           "additionalProperties": {
             "type": "string"
+          },
+          "properties": {
+            "access.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Add to access token",
+              "description": "Should the claim be added to the access token?"
+            },
+            "id.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Add to ID token",
+              "description": "Should the claim be added to the ID token?"
+            },
+            "introspection.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Add to token introspection",
+              "description": "Should the claim be added to the token introspection?"
+            },
+            "userinfo.token.claim": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Add to userinfo",
+              "description": "Should the claim be added to the userinfo?"
+            }
           }
         }
       },
