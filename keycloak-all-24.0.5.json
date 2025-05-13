@@ -1410,6 +1410,29 @@
           "type": "object",
           "additionalProperties": {
             "type": "string"
+          },
+          "consent.screen.text": {
+            "type": "string"
+          },
+          "display.on.consent.screen": {
+            "type": "string",
+            "enum": [
+              "true",
+              "false",
+              ""
+            ]
+          },
+          "gui.order": {
+            "type": "string",
+            "pattern": "^[0-9]*$"
+          },
+          "include.in.token.scope": {
+            "type": "string",
+            "enum": [
+              "true",
+              "false",
+              ""
+            ]
           }
         },
         "protocolMappers": {

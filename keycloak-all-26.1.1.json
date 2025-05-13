@@ -1337,6 +1337,16 @@
               ],
               "title": "Pushed authorization request required",
               "description": "Boolean parameter indicating whether the authorization server accepts authorization request data only via the pushed authorization request method."
+            },
+            "frontchannel.logout.session.required": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false",
+                ""
+              ],
+              "title": "Front-channel logout session required",
+              "description": "Front-channel logout session required"
             }
           }
         },
@@ -1433,10 +1443,14 @@
           "type": "string"
         },
         "name": {
-          "type": "string"
+          "type": "string",
+          "title": "Name",
+          "description": "Name of the client scope. Must be unique in the realm. Name should not contain space characters as it is used as value of scope parameter."
         },
         "description": {
-          "type": "string"
+          "type": "string",
+          "title": "Description",
+          "description": "Description of the client scope"
         },
         "protocol": {
           "type": "string",
@@ -1449,6 +1463,47 @@
           "type": "object",
           "additionalProperties": {
             "type": "string"
+          },
+          "consent.screen.text": {
+            "type": "string"
+          },
+          "display.on.consent.screen": {
+            "type": "string",
+            "enum": [
+              "true",
+              "false",
+              ""
+            ]
+          },
+          "gui.order": {
+            "type": "string",
+            "pattern": "^[0-9]*$"
+          },
+          "include.in.token.scope": {
+            "type": "string",
+            "enum": [
+              "true",
+              "false",
+              ""
+            ]
+          },
+          "properties": {
+            "consent.screen.text": {
+              "title": "Consent screen text",
+              "description": "Text that will be shown on the consent screen when this client scope is added to some client with consent required. Defaults to name of client scope if it is not filled."
+            },
+            "display.on.consent.screen": {
+              "title": "Display on consent screen",
+              "description": "If on, and this client scope is added to some client with consent required, the text specified by 'Consent Screen Text' will be displayed on consent screen. If off, this client scope will not be displayed on the consent screen."
+            },
+            "gui.order": {
+              "title": "Display Order",
+              "description": "Specify order of the provider in GUI (such as in Consent page) as integer."
+            },
+            "include.in.token.scope": {
+              "title": "Include in token scope",
+              "description": "If on, the name of this client scope will be added to the access token property 'scope' as well as to the Token Introspection Endpoint response. If off, this client scope will be omitted from the token and from the Token Introspection Endpoint response."
+            }
           }
         },
         "protocolMappers": {
