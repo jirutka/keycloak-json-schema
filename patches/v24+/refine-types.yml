@@ -102,6 +102,74 @@ ClientRepresentation:
         pkce.code.challenge.method:
           type: string
         require.pushed.authorization.requests: *string-bool
+        #
+        # SAML client
+        #
+        ## Settings
+        # Access settings
+        saml_idp_initiated_sso_url_name:
+          type: string
+        saml_idp_initiated_sso_relay_state:
+          type: string
+        # SAML capabilities
+        saml_name_id_format:
+          type: string
+        saml_force_name_id_format: *string-bool
+        saml.force.post.binding: *string-bool
+        saml.artifact.binding: *string-bool
+        saml.authnstatement: *string-bool
+        saml.onetimeuse.condition: *string-bool
+        saml.server.signature.keyinfo.ext: *string-bool
+        saml.allow.ecp.flow: *string-bool
+        # Signature and Encryption
+        saml.server.signature: *string-bool
+        saml.assertion.signature: *string-bool
+        saml.signature.algorithm:
+          type: string
+          enum:
+            - RSA_SHA1
+            - RSA_SHA256
+            - RSA_SHA256_MGF1
+            - RSA_SHA512
+            - RSA_SHA512_MGF1
+            - DSA_SHA1
+        saml.server.signature.keyinfo.xmlSigKeyInfoKeyNameTransformer:
+          type: string
+          enum:
+            - NONE
+            - KEY_ID
+            - CERT_SUBJECT
+        saml_signature_canonicalization_method:
+          type: string
+        ## Keys
+        saml.client.signature: *string-bool
+        saml.signing.certificate:
+          type: string
+        saml.signing.private.key:
+          type: string
+        saml.encrypt: *string-bool
+        ## Advanced
+        # Fine Grain SAML Endpoint Configuration
+        saml_assertion_consumer_url_post:
+          type: string
+        saml_assertion_consumer_url_redirect:
+          type: string
+        saml_single_logout_service_url_post:
+          type: string
+        saml_single_logout_service_url_redirect:
+          type: string
+        saml_single_logout_service_url_soap:
+          type: string
+        saml_single_logout_service_url_artifact:
+          type: string
+        saml_artifact_binding_url:
+          type: string
+        saml_artifact_resolution_service_url:
+          type: string
+        saml.artifact.binding.identifier:
+          type: string
+        # Advanced settings
+        saml.assertion.lifespan: *string-uint
     clientAuthenticatorType:
       type: string
       enum:

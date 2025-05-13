@@ -301,6 +301,153 @@ ClientRepresentation:
             $ref: ${baseUri}#/pushedAuthorizationRequestRequired
           description:
             $ref: ${baseUri}#/pushedAuthorizationRequestRequiredHelp
+        #
+        # SAML client
+        #
+
+        ## Settings
+        # Access settings
+        saml_idp_initiated_sso_url_name:
+          title:
+            $ref: ${baseUri}#/idpInitiatedSsoUrlName
+          description:
+            $ref: ${baseUri}#/idpInitiatedSsoUrlNameHelp
+        saml_idp_initiated_sso_relay_state:
+          title:
+            $ref: ${baseUri}#/idpInitiatedSsoRelayState
+          description:
+            $ref: ${baseUri}#/idpInitiatedSsoRelayStateHelp
+
+        # SAML capabilities
+        saml_name_id_format:
+          title:
+            $ref: ${baseUri}#/nameIdFormat
+          description:
+            $ref: ${baseUri}#/nameIdFormatHelp
+        saml_force_name_id_format:
+          title:
+            $ref: ${baseUri}#/forceNameIdFormat
+          description:
+            $ref: ${baseUri}#/forceNameIdFormatHelp
+        saml.force.post.binding:
+          title:
+            $ref: ${baseUri}#/forcePostBinding
+          description:
+            $ref: ${baseUri}#/forcePostBindingHelp
+        saml.artifact.binding:
+          title:
+            $ref: ${baseUri}#/forceArtifactBinding
+          description:
+            $ref: ${baseUri}#/forceArtifactBindingHelp
+        saml.authnstatement:
+          title:
+            $ref: ${baseUri}#/includeAuthnStatement
+          description:
+            $ref: ${baseUri}#/includeAuthnStatementHelp
+        saml.onetimeuse.condition:
+          title:
+            $ref: ${baseUri}#/includeOneTimeUseCondition
+          description:
+            $ref: ${baseUri}#/includeOneTimeUseConditionHelp
+        saml.server.signature.keyinfo.ext:
+          title:
+            $ref: ${baseUri}#/optimizeLookup
+          description:
+            $ref: ${baseUri}#/optimizeLookupHelp
+        saml.allow.ecp.flow:
+          title:
+            $ref: ${baseUri}#/allowEcpFlow
+          description:
+            $ref: ${baseUri}#/allowEcpFlowHelp
+
+        # Signature and Encryption
+        saml.server.signature:
+          title:
+            $ref: ${baseUri}#/signDocuments
+          description:
+            $ref: ${baseUri}#/signDocumentsHelp
+        saml.assertion.signature:
+          title:
+            $ref: ${baseUri}#/signAssertions
+          description:
+            $ref: ${baseUri}#/signAssertionsHelp
+        saml.signature.algorithm:
+          title:
+            $ref: ${baseUri}#/signatureAlgorithm
+          description:
+            $ref: ${baseUri}#/signatureAlgorithmHelp
+        saml.server.signature.keyinfo.xmlSigKeyInfoKeyNameTransformer:
+          title:
+            $ref: ${baseUri}#/samlSignatureKeyName
+          description:
+            $ref: ${baseUri}#/samlSignatureKeyNameHelp
+        saml_signature_canonicalization_method:
+          title:
+            $ref: ${baseUri}#/canonicalization
+          description:
+            $ref: ${baseUri}#/canonicalizationHelp
+
+        ## Keys
+        saml.client.signature:
+          title:
+            $ref: ${baseUri}#/clientSignature
+          description:
+            $ref: ${baseUri}#/clientSignatureHelp
+        saml.encrypt:
+          title:
+            $ref: ${baseUri}#/encryptAssertions
+          description:
+            $ref: ${baseUri}#/encryptAssertionsHelp
+
+        ## Advanced
+        # Fine Grain SAML Endpoint Configuration
+        saml_assertion_consumer_url_post:
+          title:
+            $ref: ${baseUri}#/assertionConsumerServicePostBindingURL
+          description:
+            $ref: ${baseUri}#/assertionConsumerServicePostBindingURLHelp
+        saml_assertion_consumer_url_redirect:
+          title:
+            $ref: ${baseUri}#/assertionConsumerServiceRedirectBindingURL
+          description:
+            $ref: ${baseUri}#/assertionConsumerServiceRedirectBindingURLHelp
+        saml_single_logout_service_url_post:
+          title:
+            $ref: ${baseUri}#/logoutServicePostBindingURL
+          description:
+            $ref: ${baseUri}#/logoutServicePostBindingURLHelp
+        saml_single_logout_service_url_redirect:
+          title:
+            $ref: ${baseUri}#/logoutServiceRedirectBindingURL
+          description:
+            $ref: ${baseUri}#/logoutServiceRedirectBindingURLHelp
+        saml_single_logout_service_url_soap:
+          title:
+            $ref: ${baseUri}#/logoutServiceSoapBindingUrl
+          description:
+            $ref: ${baseUri}#/logoutServiceSoapBindingUrlHelp
+        saml_single_logout_service_url_artifact:
+          title:
+            $ref: ${baseUri}#/logoutServiceArtifactBindingUrl
+          description:
+            $ref: ${baseUri}#/logoutServiceArtifactBindingUrlHelp
+        saml_artifact_binding_url:
+          title:
+            $ref: ${baseUri}#/artifactBindingUrl
+          description:
+            $ref: ${baseUri}#/artifactBindingUrlHelp
+        saml_artifact_resolution_service_url:
+          title:
+            $ref: ${baseUri}#/artifactResolutionService
+          description:
+            $ref: ${baseUri}#/artifactResolutionServiceHelp
+
+        # Advanced settings
+        saml.assertion.lifespan:
+          title:
+            $ref: ${baseUri}#/assertionLifespan
+          description:
+            $ref: ${baseUri}#/assertionLifespanHelp
     authenticationFlowBindingOverrides:
       title:
         $ref: ${baseUri}#/authenticationOverrides
